@@ -3,6 +3,7 @@ package com.webhopers.innovexia.activities.mainActivity
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.ActionBarDrawerToggle
+import android.support.v7.widget.GridLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -10,6 +11,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 
 import com.webhopers.innovexia.R
+import com.webhopers.innovexia.adapters.SelectableAdapter
 import com.webhopers.innovexia.models.ProductCategory
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.nav_list_item.view.*
@@ -63,6 +65,7 @@ class MainActivity : MainView, AppCompatActivity() {
     private fun initUI() {
         setUpAppBar()
         setUpNavDrawer()
+        setUpRecyclerView()
     }
 
     private fun setUpAppBar() {
@@ -76,19 +79,24 @@ class MainActivity : MainView, AppCompatActivity() {
         am_drawer.addDrawerListener(drawerToggle)
     }
 
+    private fun setUpNavDrawer() {
+        am_nav_list.adapter = ArrayAdapter(this, R.layout.nav_list_item, R.id.nli_category_name, map.map { it.key })
+        am_nav_list.setOnItemClickListener { adapterView, view, i, l ->
+            val selectedCategory = map[view.nli_category_name.text.toString()]!!
+            am_drawer.closeDrawers()
+            am_recycler_view.adapter = null
+            presenter.getProducts(selectedCategory)
+        }
+    }
+
+    private fun setUpRecyclerView() {
+        am_recycler_view.layoutManager = GridLayoutManager(this, 2)
+    }
+
     /**
      *
      * view functions
      */
-    private fun setUpNavDrawer() {
-        am_nav_list.adapter = ArrayAdapter(this, R.layout.nav_list_item, R.id.nli_category_name, map.map { it.key })
-        am_nav_list.setOnItemClickListener { adapterView, view, i, l ->
-            val item = map[view.nli_category_name.text.toString()]!!
-            am_drawer.closeDrawers()
-            presenter.getProducts(item)
-        }
-    }
-
     override fun makeToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
@@ -99,6 +107,6 @@ class MainActivity : MainView, AppCompatActivity() {
     }
 
     override fun setAdapter(list: List<String?>) {
-        list.forEach { println(it) }
+        am_recycler_view.adapter = SelectableAdapter(list)
     }
 }
