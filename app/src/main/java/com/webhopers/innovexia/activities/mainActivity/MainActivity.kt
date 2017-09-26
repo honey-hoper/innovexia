@@ -1,28 +1,36 @@
-package com.webhopers.innovexia.activities
+package com.webhopers.innovexia.activities.mainActivity
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.ActionBarDrawerToggle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.Toast
 
 import com.webhopers.innovexia.R
 import com.webhopers.innovexia.models.ProductCategory
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.nav_list_item.view.*
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : MainView, AppCompatActivity() {
 
     private val CATEGORIES = "CATEGORIES"
 
     private lateinit var map: Map<String, String>
+
+    private lateinit var presenter: MainPresenter
 
     private lateinit var drawerToggle: ActionBarDrawerToggle
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        //presenter
+        presenter = MainPresenter(this)
 
         //extracting categories from intent
         @Suppress("UNCHECKED_CAST")
@@ -47,6 +55,7 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+
     /**
      *
      * ui functions
@@ -67,7 +76,29 @@ class MainActivity : AppCompatActivity() {
         am_drawer.addDrawerListener(drawerToggle)
     }
 
+    /**
+     *
+     * view functions
+     */
     private fun setUpNavDrawer() {
         am_nav_list.adapter = ArrayAdapter(this, R.layout.nav_list_item, R.id.nli_category_name, map.map { it.key })
+        am_nav_list.setOnItemClickListener { adapterView, view, i, l ->
+            val item = map[view.nli_category_name.text.toString()]!!
+            am_drawer.closeDrawers()
+            presenter.getProducts(item)
+        }
+    }
+
+    override fun makeToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun showProgressBar(bool: Boolean) {
+        if (bool) am_pbar.visibility = View.VISIBLE
+        else am_pbar.visibility = View.INVISIBLE
+    }
+
+    override fun setAdapter(list: List<String?>) {
+        list.forEach { println(it) }
     }
 }
