@@ -13,6 +13,7 @@ import android.widget.Toast
 import com.webhopers.innovexia.R
 import com.webhopers.innovexia.adapters.SelectableAdapter
 import com.webhopers.innovexia.models.ProductCategory
+import com.webhopers.innovexia.utils.RecyclerViewDecorator
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.nav_list_item.view.*
 
@@ -91,6 +92,7 @@ class MainActivity : MainView, AppCompatActivity() {
 
     private fun setUpRecyclerView() {
         am_recycler_view.layoutManager = GridLayoutManager(this, 2)
+        am_recycler_view.addItemDecoration(RecyclerViewDecorator(2, 5, true))
     }
 
     /**
@@ -107,6 +109,6 @@ class MainActivity : MainView, AppCompatActivity() {
     }
 
     override fun setAdapter(list: List<String?>) {
-        am_recycler_view.adapter = SelectableAdapter(list)
+        am_recycler_view.adapter = SelectableAdapter(list,this)
     }
 }
