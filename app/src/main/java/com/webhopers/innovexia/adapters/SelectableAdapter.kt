@@ -1,5 +1,6 @@
 package com.webhopers.innovexia.adapters
 
+import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.view.ActionMode
 import android.support.v7.widget.RecyclerView
@@ -8,6 +9,8 @@ import android.view.*
 import com.bignerdranch.android.multiselector.ModalMultiSelectorCallback
 import com.bignerdranch.android.multiselector.MultiSelector
 import com.bignerdranch.android.multiselector.SwappingHolder
+import com.facebook.drawee.backends.pipeline.Fresco
+import com.stfalcon.frescoimageviewer.ImageViewer
 import com.webhopers.innovexia.R
 import com.webhopers.innovexia.services.GlideApp
 import kotlinx.android.synthetic.main.square_image_view.view.*
@@ -47,8 +50,11 @@ class SelectableAdapter(val dataset: List<String?>, val activity: AppCompatActiv
             activity.startSupportActionMode(multiSelectorMode)
         }
 
-        override fun startImageViewer(position: Int) {
-
+        override fun startImageViewer(context: Context, position: Int) {
+            ImageViewer.Builder(context, dataset)
+                    .setStartPosition(position)
+                    .show()
+            Fresco.initialize(context)
         }
 
         override fun toggleItemSelectionAdapter(select: Boolean, position: Int) {
@@ -129,7 +135,7 @@ class SelectableAdapter(val dataset: List<String?>, val activity: AppCompatActiv
                 val isSelected = adapterListener.getSelectedPositions().contains(layoutPosition)
                 adapterListener.toggleItemSelectionAdapter(!isSelected, layoutPosition)
             } else {
-                adapterListener.startImageViewer(position)
+                adapterListener.startImageViewer(itemView.context, position)
             }
         }
 
@@ -145,7 +151,7 @@ class SelectableAdapter(val dataset: List<String?>, val activity: AppCompatActiv
     interface AdapterListener {
         fun toggleItemSelectionAdapter(select: Boolean, position: Int)
         fun getSelectedPositions(): HashSet<Int>
-        fun startImageViewer(position: Int)
+        fun startImageViewer(context: Context, position: Int)
         fun startActionMode()
     }
 }
