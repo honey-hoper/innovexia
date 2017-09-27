@@ -12,9 +12,22 @@
     </style>
 
     <!-- Text -->
+    <style name="SmallText" parent="AppTheme">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#434343</item>
+    </style>
+
     <style name="NormalText" parent="AppTheme">
         <item name="android:textSize">14sp</item>
-        <item name="android:textColor">#000</item>
+        <item name="android:textColor">#434343</item>
+    </style>
+
+    <style name="SmallText.Accent" parent="SmallText">
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
+    <style name="NormalText.Accent" parent="NormalText">
+        <item name="android:textColor">@color/colorAccent</item>
     </style>
     <!-- Text -->
     

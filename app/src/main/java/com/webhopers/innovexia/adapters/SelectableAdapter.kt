@@ -12,10 +12,11 @@ import com.bignerdranch.android.multiselector.SwappingHolder
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.stfalcon.frescoimageviewer.ImageViewer
 import com.webhopers.innovexia.R
+import com.webhopers.innovexia.dialogs.CreateSlideDialog
 import com.webhopers.innovexia.services.GlideApp
 import kotlinx.android.synthetic.main.square_image_view.view.*
 
-class SelectableAdapter(val dataset: List<String?>, val activity: AppCompatActivity) : RecyclerView.Adapter<SelectableAdapter.ViewHolder>() {
+class SelectableAdapter(val dataset: List<String?>, val activity: AppCompatActivity, val context: Context) : RecyclerView.Adapter<SelectableAdapter.ViewHolder>() {
 
     val multiSelector = MultiSelector()
     var actMode: ActionMode? = null
@@ -69,19 +70,22 @@ class SelectableAdapter(val dataset: List<String?>, val activity: AppCompatActiv
      * action mode callback
      */
     val multiSelectorMode = object : ModalMultiSelectorCallback(multiSelector) {
-        override fun onActionItemClicked(mode: android.support.v7.view.ActionMode?, item: MenuItem?): Boolean {
+        override fun onActionItemClicked(mode: ActionMode, item: MenuItem): Boolean {
+            when(item.itemId) {
+                R.id.action_create_slide -> CreateSlideDialog(context)
+            }
             return true
         }
 
-        override fun onCreateActionMode(actionMode: android.support.v7.view.ActionMode?, menu: Menu?): Boolean {
+        override fun onCreateActionMode(actionMode: ActionMode, menu: Menu): Boolean {
             super.onCreateActionMode(actionMode, menu)
             actMode = actionMode
-            activity.menuInflater.inflate(R.menu.default_menu, menu)
+            activity.menuInflater.inflate(R.menu.action_menu, menu)
             return true
 
         }
 
-        override fun onDestroyActionMode(actionMode: ActionMode?) {
+        override fun onDestroyActionMode(actionMode: ActionMode) {
             super.onDestroyActionMode(actionMode)
             selectedPositions.forEach {
                 if (itemViews[it] != null)

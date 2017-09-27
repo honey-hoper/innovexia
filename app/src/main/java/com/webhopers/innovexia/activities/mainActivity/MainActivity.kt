@@ -109,6 +109,6 @@ class MainActivity : MainView, AppCompatActivity() {
     }
 
     override fun setAdapter(list: List<String?>) {
-        am_recycler_view.adapter = SelectableAdapter(list,this)
+        am_recycler_view.adapter = SelectableAdapter(list,this, this)
     }
 }

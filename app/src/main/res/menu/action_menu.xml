@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:icon="@drawable/create_new"
+        android:title="@string/create_slide"
+        android:id="@+id/action_create_slide"
+        app:showAsAction="always" />
+
+    <item android:icon="@drawable/add_to"
+        android:title="@string/add_to_slide"
+        android:id="@+id/action_add_to_slide"
+        app:showAsAction="always" />
+
+</menu>

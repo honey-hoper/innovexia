@@ -5,4 +5,13 @@
     <string name="open">Open</string>
     <string name="close">Close</string>
     <!-- Drawer Toggle -->
+
+    <!-- Dialogs -->
+    <string name="create_slide">Create Slide</string>
+    <string name="add_to_slide">Add to Slide</string>
+    <string name="enter_slide_name">Enter Slide Name</string>
+    <string name="cancel">Cancel</string>
+    <string name="create">Create</string>
+    <!-- Dialogs -->
+
 </resources>
