@@ -22,6 +22,13 @@ class RealmDatabaseService {
             return result
         }
 
+        fun getSlide(slideName: String): Slide? {
+            val result = realm.where(Slide::class.java)
+                    .equalTo("name", slideName)
+                    .findFirst()
+            return result
+        }
+
         fun addToSlide(slideName: String, urls: List<ImageUrl>) {
             val result = realm.where(Slide::class.java)
                     .equalTo("name", slideName)

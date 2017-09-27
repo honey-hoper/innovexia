@@ -12,6 +12,12 @@
     <string name="enter_slide_name">Enter Slide Name</string>
     <string name="cancel">Cancel</string>
     <string name="create">Create</string>
+    <string name="select_slide">Select Slide</string>
+    <string name="select">Select</string>
     <!-- Dialogs -->
+
+    <!-- Menu -->
+    <string name="slides">Slides</string>
+    <!-- Menu -->
 
 </resources>

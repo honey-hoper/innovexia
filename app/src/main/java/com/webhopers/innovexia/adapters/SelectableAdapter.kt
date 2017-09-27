@@ -6,6 +6,7 @@ import android.support.v7.view.ActionMode
 import android.support.v7.widget.RecyclerView
 import android.util.SparseArray
 import android.view.*
+import android.widget.Toast
 import com.bignerdranch.android.multiselector.ModalMultiSelectorCallback
 import com.bignerdranch.android.multiselector.MultiSelector
 import com.bignerdranch.android.multiselector.SwappingHolder
@@ -13,7 +14,10 @@ import com.facebook.drawee.backends.pipeline.Fresco
 import com.stfalcon.frescoimageviewer.ImageViewer
 import com.webhopers.innovexia.R
 import com.webhopers.innovexia.dialogs.CreateSlideDialog
+import com.webhopers.innovexia.dialogs.ListSlidesDialog
+import com.webhopers.innovexia.models.ImageUrl
 import com.webhopers.innovexia.services.GlideApp
+import com.webhopers.innovexia.services.RealmDatabaseService
 import kotlinx.android.synthetic.main.square_image_view.view.*
 
 class SelectableAdapter(val dataset: List<String?>, val activity: AppCompatActivity, val context: Context) : RecyclerView.Adapter<SelectableAdapter.ViewHolder>() {
@@ -40,6 +44,13 @@ class SelectableAdapter(val dataset: List<String?>, val activity: AppCompatActiv
             actMode?.finish()
             return
         }
+    }
+
+    fun getSelectedImagesUrls(): List<ImageUrl> {
+        if (selectedPositions.isEmpty())
+            return listOf()
+
+         return selectedPositions.map { ImageUrl(dataset[it]) }
     }
 
     /**
@@ -72,7 +83,9 @@ class SelectableAdapter(val dataset: List<String?>, val activity: AppCompatActiv
     val multiSelectorMode = object : ModalMultiSelectorCallback(multiSelector) {
         override fun onActionItemClicked(mode: ActionMode, item: MenuItem): Boolean {
             when(item.itemId) {
-                R.id.action_create_slide -> CreateSlideDialog(context)
+                R.id.action_create_slide -> CreateSlideDialog(context, getSelectedImagesUrls())
+                R.id.action_add_to_slide -> OpenListSlidesDialog()
+
             }
             return true
         }
@@ -93,6 +106,17 @@ class SelectableAdapter(val dataset: List<String?>, val activity: AppCompatActiv
             }
             selectedPositions.clear()
             actMode = null
+        }
+
+        fun OpenListSlidesDialog() {
+            val displayValues = RealmDatabaseService.getSlides().map { it.name }
+            if (displayValues.isEmpty()) {
+                Toast.makeText(context, "No Slide to select", Toast.LENGTH_SHORT).show()
+                return
+            }
+
+            val urls = getSelectedImagesUrls()
+            ListSlidesDialog(context, displayValues.toTypedArray(), false, urls)
         }
 
     }

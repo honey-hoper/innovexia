@@ -12,7 +12,9 @@ import android.widget.Toast
 
 import com.webhopers.innovexia.R
 import com.webhopers.innovexia.adapters.SelectableAdapter
+import com.webhopers.innovexia.dialogs.ListSlidesDialog
 import com.webhopers.innovexia.models.ProductCategory
+import com.webhopers.innovexia.services.RealmDatabaseService
 import com.webhopers.innovexia.utils.RecyclerViewDecorator
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.nav_list_item.view.*
@@ -49,13 +51,25 @@ class MainActivity : MainView, AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.default_menu, menu)
+        menuInflater.inflate(R.menu.main_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (drawerToggle.onOptionsItemSelected(item)) return true
+        when(item.itemId) {
+            R.id.action_open_slides -> OpenListSlidesDialog()
+        }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun OpenListSlidesDialog() {
+        val displayValues = RealmDatabaseService.getSlides().map { it.name }
+        if (displayValues.isEmpty()) {
+            Toast.makeText(this, "No Slide to select", Toast.LENGTH_SHORT).show()
+            return
+        }
+        ListSlidesDialog(this, displayValues.toTypedArray(), true, listOf())
     }
 
 
