@@ -1,5 +1,7 @@
 package com.webhopers.innovexia.activities.mainActivity
 
+import android.content.Context
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.ActionBarDrawerToggle
@@ -11,10 +13,13 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 
 import com.webhopers.innovexia.R
+import com.webhopers.innovexia.activities.SplashActivity
 import com.webhopers.innovexia.adapters.SelectableAdapter
 import com.webhopers.innovexia.dialogs.ListSlidesDialog
 import com.webhopers.innovexia.models.ProductCategory
 import com.webhopers.innovexia.services.RealmDatabaseService
+import com.webhopers.innovexia.services.SharedPreferenceService
+import com.webhopers.innovexia.utils.Constants
 import com.webhopers.innovexia.utils.RecyclerViewDecorator
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.nav_list_item.view.*
@@ -59,10 +64,15 @@ class MainActivity : MainView, AppCompatActivity() {
         if (drawerToggle.onOptionsItemSelected(item)) return true
         when(item.itemId) {
             R.id.action_open_slides -> OpenListSlidesDialog()
+            R.id.action_log_out -> LogOut()
         }
         return super.onOptionsItemSelected(item)
     }
 
+    /**
+     *
+     * opens list slides dialog
+     */
     private fun OpenListSlidesDialog() {
         val displayValues = RealmDatabaseService.getSlides().map { it.name }
         if (displayValues.isEmpty()) {
@@ -70,6 +80,16 @@ class MainActivity : MainView, AppCompatActivity() {
             return
         }
         ListSlidesDialog(this, displayValues.toTypedArray(), true, listOf())
+    }
+
+    /**
+     *
+     * log customer out
+     */
+    fun LogOut() {
+        val preferences = getSharedPreferences(Constants.customerStatusFile, Context.MODE_PRIVATE)
+        SharedPreferenceService.setCustomerStatus(preferences, Constants.customerLoggedOut)
+        startSplashActivity()
     }
 
 
@@ -107,6 +127,11 @@ class MainActivity : MainView, AppCompatActivity() {
     private fun setUpRecyclerView() {
         am_recycler_view.layoutManager = GridLayoutManager(this, 2)
         am_recycler_view.addItemDecoration(RecyclerViewDecorator(2, 5, true))
+    }
+
+    private fun startSplashActivity() {
+        startActivity(Intent(this, SplashActivity::class.java))
+        finish()
     }
 
     /**

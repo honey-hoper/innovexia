@@ -6,4 +6,8 @@
         android:id="@+id/action_open_slides"
         app:showAsAction="never" />
 
+    <item android:title="@string/logout"
+        android:id="@+id/action_log_out"
+        app:showAsAction="never" />
+
 </menu>

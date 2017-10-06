@@ -31,7 +31,8 @@ class SplashActivity : AppCompatActivity() {
 
         val preferences = getSharedPreferences(Constants.customerStatusFile, Context.MODE_PRIVATE)
         val customerStatus = SharedPreferenceService.getCustomerStatus(preferences)
-        println(customerStatus)
+
+        //checking customer status whether logged in or not
         if (customerStatus == Constants.customerLoggedIn)
             getCategories()
         else if (customerStatus == Constants.customerLoggedOut)
