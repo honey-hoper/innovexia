@@ -1,5 +1,6 @@
 package com.webhopers.innovexia.activities
 
+import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -7,10 +8,13 @@ import android.view.View
 import android.widget.Toast
 
 import com.webhopers.innovexia.R
+import com.webhopers.innovexia.activities.loginActivity.LoginActivity
 import com.webhopers.innovexia.activities.mainActivity.MainActivity
 import com.webhopers.innovexia.models.ProductCategory
+import com.webhopers.innovexia.services.SharedPreferenceService
 import com.webhopers.innovexia.services.WooCommerce
 import com.webhopers.innovexia.services.WooCommerceClient
+import com.webhopers.innovexia.utils.Constants
 import kotlinx.android.synthetic.main.activity_splash.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -25,7 +29,13 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        getCategories()
+        val preferences = getSharedPreferences(Constants.customerStatusFile, Context.MODE_PRIVATE)
+        val customerStatus = SharedPreferenceService.getCustomerStatus(preferences)
+        println(customerStatus)
+        if (customerStatus == Constants.customerLoggedIn)
+            getCategories()
+        else if (customerStatus == Constants.customerLoggedOut)
+            startLoginActivity()
     }
 
     /**
@@ -84,6 +94,11 @@ class SplashActivity : AppCompatActivity() {
         val intent = Intent(this, MainActivity::class.java)
         intent.putExtra(CATEGORIES, (list as Serializable))
         startActivity(intent)
+        finish()
+    }
+
+    fun startLoginActivity() {
+        startActivity(Intent(this, LoginActivity::class.java))
         finish()
     }
 

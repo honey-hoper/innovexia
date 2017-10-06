@@ -1,10 +1,8 @@
 package com.webhopers.innovexia.services
 
-import com.webhopers.innovexia.models.Product
-import com.webhopers.innovexia.models.ProductCategory
+import com.webhopers.innovexia.models.*
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface WooCommerce {
 
@@ -13,4 +11,12 @@ interface WooCommerce {
 
     @GET("products")
     fun productsByCategories(@Query("category") category: String, @Query("per_page") perPage: String = "100", @Query("order") order: String = "asc", @Query("orderby") orderBy: String = "title"): Call<List<Product>>
+
+    @POST("customer/login")
+    fun loginCustomer(@Body customerCredentials: CustomerCredentials): Call<CustomerLoginResponse>
+
+    @GET("customers/{id}")
+    fun getCustomer(@Path("id") id: Long): Call<Customer>
+
 }
+
