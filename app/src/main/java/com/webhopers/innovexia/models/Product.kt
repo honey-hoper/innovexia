@@ -21,5 +21,8 @@ class ProductCategory (
         @SerializedName("id")
         var id: String? = null,
         @SerializedName("name")
-        var name: String? = null
+        var name: String? = null,
+        @SerializedName("publish_in_app")
+        var publish: Boolean = true
+
 ) : Serializable

@@ -63,7 +63,8 @@ class SplashActivity : AppCompatActivity() {
      * not be shown
      */
     fun filter(list: List<ProductCategory>) {
-        startMainActivity(list)
+        val filteredList = list.filter { it.publish }
+        startMainActivity(filteredList)
     }
 
     /**
