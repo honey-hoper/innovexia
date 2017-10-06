@@ -38,7 +38,8 @@ class MainPresenter(val view: MainView) {
      * and sets the recycler view adapter
      */
     fun filterUrlsAndSetAdapter(list: List<Product>) {
-        val urls = list.map { it.images?.get(0)?.src }
+        val filteredList = list.filter { it.publish }
+        val urls = filteredList.map { it.label }
         view.setAdapter(urls)
     }
 }

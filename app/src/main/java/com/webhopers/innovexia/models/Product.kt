@@ -8,8 +8,12 @@ class Product (
         var id: String? = null,
         @SerializedName("name")
         var name: String? = null,
-        @SerializedName("images")
-        var images: List<Image>? = null
+//        @SerializedName("images")
+//        var images: List<Image>? = null,
+        @SerializedName("publish_in_app")
+        var publish: Boolean = true,
+        @SerializedName("product_visualate")
+        var label: String? = null
 ) : Serializable
 
 class Image (
