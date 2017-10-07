@@ -51,7 +51,7 @@
                     android:maxLength="50"
                     android:maxLines="1"
                     android:textAppearance="@style/NormalText"
-                    android:hint="@string/enter_email"/>
+                    android:hint="@string/email_or_username"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -116,4 +116,12 @@
         android:layout_marginTop="160dp"
         android:layout_gravity="center_horizontal"
         android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/al_forgot_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:padding="16dp"
+        android:text="@string/forgot_password"/>
 </android.support.design.widget.CoordinatorLayout>

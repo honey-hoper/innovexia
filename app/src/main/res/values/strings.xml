@@ -23,9 +23,14 @@
 
     <!-- Activities -->
     <string name="enter_email">Enter Email</string>
+    <string name="email_or_username">Enter Email or Username</string>
     <string name="enter_password">Enter Password</string>
+    <string name="enter_username">Enter Username</string>
+    <string name="confirm_password">Confirm Password</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="send_password">Send new password to this email</string>
     <!-- Activities -->
 
 </resources>

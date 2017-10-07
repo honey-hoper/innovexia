@@ -126,7 +126,16 @@ class LoginPresenter(val view: LoginView, val context: Context) {
      * converts error message to json object
      * to get login error
      */
-    fun getErrorFromResponse(errorBody: String) = JSONObject(errorBody).get("code").toString()
+    fun getErrorFromResponse(errorBody: String): String {
+        val error = JSONObject(errorBody).get("code").toString()
+        when(error) {
+            "authentication_failed" -> return "Activation Pending"
+            "invalid_email" -> return "Invalid Email"
+            "invalid_username" -> return "Invalid Username"
+            "incorrect_password" -> return "Incorrect Password"
+        }
+        return error
+    }
 
     /**
      *

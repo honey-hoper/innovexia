@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.view.View
 
 import com.webhopers.innovexia.R
+import com.webhopers.innovexia.activities.ForgotPasswordActivity
+import com.webhopers.innovexia.activities.RegisterActivity
 import com.webhopers.innovexia.activities.SplashActivity
 import com.webhopers.innovexia.utils.show
 import kotlinx.android.synthetic.main.activity_login.*
@@ -32,11 +34,21 @@ class LoginActivity : LoginView, AppCompatActivity() {
     private fun initUI() {
         setUpToolbar()
         al_login_btn.setOnClickListener { presenter.validateAndLogin() }
+        al_register_btn.setOnClickListener { startRegisterActivity() }
+        al_forgot_password.setOnClickListener { startForgotPasswordActivity() }
     }
 
     private fun setUpToolbar() {
         setSupportActionBar(al_toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
+    }
+
+    fun startRegisterActivity() {
+        startActivity(Intent(this, RegisterActivity::class.java))
+    }
+
+    fun startForgotPasswordActivity() {
+        startActivity(Intent(this, ForgotPasswordActivity::class.java))
     }
 
     /**

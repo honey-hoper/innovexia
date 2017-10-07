@@ -12,7 +12,9 @@ class Customer (
         @SerializedName("last_name")
         var lastName: String? = null,
         @SerializedName("username")
-        var username: String? = null
+        var username: String? = null,
+        @SerializedName("password")
+        var password: String? = null
 )
 
 

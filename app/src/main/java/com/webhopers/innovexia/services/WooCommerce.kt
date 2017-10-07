@@ -18,5 +18,8 @@ interface WooCommerce {
     @GET("customers/{id}")
     fun getCustomer(@Path("id") id: Long): Call<Customer>
 
+    @POST("customers")
+    fun createCustomer(@Body customer: Customer): Call<Customer>
+
 }
 
