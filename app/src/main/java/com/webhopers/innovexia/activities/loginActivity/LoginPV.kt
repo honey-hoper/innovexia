@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.support.design.widget.TextInputEditText
 import android.view.View
+import com.google.gson.Gson
 import com.webhopers.innovexia.R
 import com.webhopers.innovexia.models.Customer
 import com.webhopers.innovexia.models.CustomerCredentials
@@ -13,6 +14,8 @@ import com.webhopers.innovexia.services.WooCommerce
 import com.webhopers.innovexia.services.WooCommerceClient
 import com.webhopers.innovexia.utils.Constants
 import com.webhopers.innovexia.utils.value
+import okhttp3.ResponseBody
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -71,7 +74,7 @@ class LoginPresenter(val view: LoginView, val context: Context) {
                         } else {
                             view.showProgressbar(false)
                             view.enableButtons(true)
-                            view.showErrorView(true)
+                            view.showErrorView(true, getErrorFromResponse(response.errorBody()?.string()!!))
                         }
                     }
 
@@ -117,6 +120,13 @@ class LoginPresenter(val view: LoginView, val context: Context) {
 
                 })
     }
+
+    /**
+     *
+     * converts error message to json object
+     * to get login error
+     */
+    fun getErrorFromResponse(errorBody: String) = JSONObject(errorBody).get("code").toString()
 
     /**
      *

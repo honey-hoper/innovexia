@@ -35,7 +35,9 @@ class CustomerCredentials (
  */
 class CustomerLoginResponse (
         @SerializedName("data")
-        var data: Data? = null
+        var data: Data? = null,
+        @SerializedName("code")
+        var code: String? = null
 )
 
 class Data (
