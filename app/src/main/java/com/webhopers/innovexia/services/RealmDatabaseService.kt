@@ -1,5 +1,6 @@
 package com.webhopers.innovexia.services
 
+import com.webhopers.innovexia.models.CustomerRealm
 import com.webhopers.innovexia.models.ImageUrl
 import com.webhopers.innovexia.models.Slide
 import io.realm.Realm
@@ -46,6 +47,23 @@ class RealmDatabaseService {
 
             realm.executeTransaction {
                 result?.deleteFromRealm()
+            }
+        }
+
+        fun saveCustomer(customer: CustomerRealm) {
+            realm.executeTransaction {
+                it.insert(customer)
+            }
+        }
+
+        fun getCustomer() : CustomerRealm {
+            return realm.where(CustomerRealm::class.java).findFirst()!!
+        }
+
+        fun removeCustomer() {
+            val result = realm.where(CustomerRealm::class.java).findAll()
+            realm.executeTransaction {
+                result.forEach { it.deleteFromRealm() }
             }
         }
 

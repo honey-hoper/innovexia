@@ -9,10 +9,12 @@ import com.webhopers.innovexia.R
 import com.webhopers.innovexia.models.Customer
 import com.webhopers.innovexia.models.CustomerCredentials
 import com.webhopers.innovexia.models.CustomerLoginResponse
+import com.webhopers.innovexia.services.RealmDatabaseService
 import com.webhopers.innovexia.services.SharedPreferenceService
 import com.webhopers.innovexia.services.WooCommerce
 import com.webhopers.innovexia.services.WooCommerceClient
 import com.webhopers.innovexia.utils.Constants
+import com.webhopers.innovexia.utils.convertToCustomerRealm
 import com.webhopers.innovexia.utils.value
 import okhttp3.ResponseBody
 import org.json.JSONObject
@@ -83,7 +85,6 @@ class LoginPresenter(val view: LoginView, val context: Context) {
                         view.enableButtons(true)
                         view.showErrorView(true, "${t.message}")
                     }
-
                 })
     }
 
@@ -111,13 +112,12 @@ class LoginPresenter(val view: LoginView, val context: Context) {
                         view.enableButtons(true)
 
                         if (response.isSuccessful) {
-                            setCustomerStatus()
+                            setCustomerStatus(response.body()!!)
                             view.startSplashActivity()
                         } else {
                             view.showErrorView(true, "${response.code()}")
                         }
                     }
-
                 })
     }
 
@@ -140,10 +140,12 @@ class LoginPresenter(val view: LoginView, val context: Context) {
     /**
      *
      * set Customer status to logged in
+     * and save their details to database
      */
-    fun setCustomerStatus() {
+    fun setCustomerStatus(customer: Customer) {
         val preferences = view.getSharedPreferences(Constants.customerStatusFile)
         SharedPreferenceService.setCustomerStatus(preferences, Constants.customerLoggedIn)
+        RealmDatabaseService.saveCustomer(customer.convertToCustomerRealm())
     }
 
 

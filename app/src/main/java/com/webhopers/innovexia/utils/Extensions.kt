@@ -2,6 +2,8 @@ package com.webhopers.innovexia.utils
 
 import android.support.design.widget.TextInputEditText
 import android.view.View
+import com.webhopers.innovexia.models.Customer
+import com.webhopers.innovexia.models.CustomerRealm
 
 fun View.show(bool: Boolean) {
     if (bool) this.visibility = View.VISIBLE
@@ -10,5 +12,24 @@ fun View.show(bool: Boolean) {
 
 fun TextInputEditText.value() = this.text.toString().trim()
 
+fun Customer.convertToCustomerRealm(): CustomerRealm {
+    return CustomerRealm(
+            this.id,
+            this.email,
+            this.firstName,
+            this.lastName,
+            this.username
+    )
+}
+
+fun CustomerRealm.convertToCustomer(): Customer {
+    return Customer(
+            this.id,
+            this.email,
+            this.firstName,
+            this.lastName,
+            this.username
+    )
+}
 
 

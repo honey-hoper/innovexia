@@ -2,6 +2,7 @@ package com.webhopers.innovexia.activities
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 
 import com.webhopers.innovexia.R
 import com.webhopers.innovexia.utils.show
@@ -46,6 +47,7 @@ class ForgotPasswordActivity : AppCompatActivity() {
      */
     private fun initUI() {
         setUpToolbar()
+        afp_send_password_btn.setOnClickListener { validateAndSendPassword() }
     }
 
     private fun setUpToolbar() {
@@ -67,6 +69,10 @@ class ForgotPasswordActivity : AppCompatActivity() {
     fun showErrorView(bool: Boolean, message: String = "Unable to send") {
         afp_error_view.show(bool)
         afp_error_view.text = message
+    }
+
+    fun makeToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
     fun startLoginActivity() {

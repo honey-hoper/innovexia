@@ -13,3 +13,13 @@ open class Slide(
 open class ImageUrl(
         var url: String? = null
 ) : RealmObject()
+
+
+open class CustomerRealm(
+        @PrimaryKey
+        var id: Long? = null,
+        var email: String? = null,
+        var firstName: String? = null,
+        var lastName: String? = null,
+        var username: String? = null
+) : RealmObject()

@@ -89,6 +89,7 @@ class MainActivity : MainView, AppCompatActivity() {
     fun LogOut() {
         val preferences = getSharedPreferences(Constants.customerStatusFile, Context.MODE_PRIVATE)
         SharedPreferenceService.setCustomerStatus(preferences, Constants.customerLoggedOut)
+        RealmDatabaseService.removeCustomer()
         startSplashActivity()
     }
 
