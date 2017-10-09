@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/bv_buyer_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
+        android:theme="@style/NormalText.Bold"
+        tools:text="Honey"/>
+
+    <TextView
+        android:id="@+id/bv_buyer_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/bv_buyer_name"
+        android:layout_marginTop="8dp"
+        android:theme="@style/NormalText"
+        tools:text="(Doctor)"/>
+
+    <TextView
+        android:id="@+id/bv_buyer_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bv_buyer_name"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:theme="@style/SmallText"
+        tools:text="Royal Enclave, Patiala"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/bv_buyer_address"
+        android:background="#808080"/>
+
+</RelativeLayout>
