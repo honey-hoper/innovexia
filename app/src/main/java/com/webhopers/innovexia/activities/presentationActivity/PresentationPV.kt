@@ -1,4 +1,4 @@
-package com.webhopers.innovexia.activities.mainActivity
+package com.webhopers.innovexia.activities.presentationActivity
 
 import com.webhopers.innovexia.models.Product
 import com.webhopers.innovexia.services.WooCommerce
@@ -7,7 +7,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainPresenter(val view: MainView) {
+class PresentationPresenter(val view: PresentationView) {
 
     /**
      *
@@ -44,7 +44,7 @@ class MainPresenter(val view: MainView) {
     }
 }
 
-interface MainView {
+interface PresentationView {
     fun makeToast(message: String)
     fun showProgressBar(bool: Boolean)
     fun setAdapter(list: List<String?>)

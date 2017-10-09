@@ -1,4 +1,4 @@
-package com.webhopers.innovexia.activities.mainActivity
+package com.webhopers.innovexia.activities.presentationActivity
 
 import android.content.Context
 import android.content.Intent
@@ -21,26 +21,26 @@ import com.webhopers.innovexia.services.RealmDatabaseService
 import com.webhopers.innovexia.services.SharedPreferenceService
 import com.webhopers.innovexia.utils.Constants
 import com.webhopers.innovexia.utils.RecyclerViewDecorator
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_presentation.*
 import kotlinx.android.synthetic.main.nav_list_item.view.*
 
 
-class MainActivity : MainView, AppCompatActivity() {
+class PresentationActivity : PresentationView, AppCompatActivity() {
 
     private val CATEGORIES = "CATEGORIES"
 
     private lateinit var map: Map<String, String>
 
-    private lateinit var presenter: MainPresenter
+    private lateinit var presenter: PresentationPresenter
 
     private lateinit var drawerToggle: ActionBarDrawerToggle
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_presentation)
 
         //presenter
-        presenter = MainPresenter(this)
+        presenter = PresentationPresenter(this)
 
         //extracting categories from intent
         @Suppress("UNCHECKED_CAST")
@@ -56,7 +56,7 @@ class MainActivity : MainView, AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.main_menu, menu)
+        menuInflater.inflate(R.menu.presentation_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -64,7 +64,6 @@ class MainActivity : MainView, AppCompatActivity() {
         if (drawerToggle.onOptionsItemSelected(item)) return true
         when(item.itemId) {
             R.id.action_open_slides -> OpenListSlidesDialog()
-            R.id.action_log_out -> LogOut()
         }
         return super.onOptionsItemSelected(item)
     }
@@ -84,18 +83,6 @@ class MainActivity : MainView, AppCompatActivity() {
 
     /**
      *
-     * log customer out
-     */
-    fun LogOut() {
-        val preferences = getSharedPreferences(Constants.customerStatusFile, Context.MODE_PRIVATE)
-        SharedPreferenceService.setCustomerStatus(preferences, Constants.customerLoggedOut)
-        RealmDatabaseService.removeCustomer()
-        startSplashActivity()
-    }
-
-
-    /**
-     *
      * ui functions
      */
     private fun initUI() {
@@ -105,34 +92,29 @@ class MainActivity : MainView, AppCompatActivity() {
     }
 
     private fun setUpAppBar() {
-        setSupportActionBar(am_toolbar)
+        setSupportActionBar(ap_toolbar)
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
-        drawerToggle = ActionBarDrawerToggle(this, am_drawer,R.string.open, R.string.close)
+        drawerToggle = ActionBarDrawerToggle(this, ap_drawer,R.string.open, R.string.close)
         drawerToggle.syncState()
-        am_drawer.addDrawerListener(drawerToggle)
+        ap_drawer.addDrawerListener(drawerToggle)
     }
 
     private fun setUpNavDrawer() {
-        am_nav_list.adapter = ArrayAdapter(this, R.layout.nav_list_item, R.id.nli_category_name, map.map { it.key })
-        am_nav_list.setOnItemClickListener { adapterView, view, i, l ->
+        ap_nav_list.adapter = ArrayAdapter(this, R.layout.nav_list_item, R.id.nli_category_name, map.map { it.key })
+        ap_nav_list.setOnItemClickListener { adapterView, view, i, l ->
             val selectedCategory = map[view.nli_category_name.text.toString()]!!
-            am_drawer.closeDrawers()
-            am_recycler_view.adapter = null
+            ap_drawer.closeDrawers()
+            ap_recycler_view.adapter = null
             presenter.getProducts(selectedCategory)
         }
     }
 
     private fun setUpRecyclerView() {
-        am_recycler_view.layoutManager = GridLayoutManager(this, 2)
-        am_recycler_view.addItemDecoration(RecyclerViewDecorator(2, 5, true))
-    }
-
-    private fun startSplashActivity() {
-        startActivity(Intent(this, SplashActivity::class.java))
-        finish()
+        ap_recycler_view.layoutManager = GridLayoutManager(this, 2)
+        ap_recycler_view.addItemDecoration(RecyclerViewDecorator(2, 5, true))
     }
 
     /**
@@ -144,11 +126,11 @@ class MainActivity : MainView, AppCompatActivity() {
     }
 
     override fun showProgressBar(bool: Boolean) {
-        if (bool) am_pbar.visibility = View.VISIBLE
-        else am_pbar.visibility = View.INVISIBLE
+        if (bool) ap_pbar.visibility = View.VISIBLE
+        else ap_pbar.visibility = View.INVISIBLE
     }
 
     override fun setAdapter(list: List<String?>) {
-        am_recycler_view.adapter = SelectableAdapter(list,this, this)
+        ap_recycler_view.adapter = SelectableAdapter(list,this, this)
     }
 }

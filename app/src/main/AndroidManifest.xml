@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activities.mainActivity.MainActivity"
+            android:name=".activities.presentationActivity.PresentationActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.SplashActivity"
@@ -28,7 +28,8 @@
             android:name=".activities.loginActivity.LoginActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".activities.RegisterActivity" />
-        <activity android:name=".activities.ForgotPasswordActivity"></activity>
+        <activity android:name=".activities.ForgotPasswordActivity" />
+        <activity android:name=".activities.MainActivity"></activity>
     </application>
 
 </manifest>

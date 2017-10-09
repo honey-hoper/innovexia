@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:title="@string/logout"
-        android:id="@+id/action_log_out"
+    <item android:title="@string/slides"
+        android:id="@+id/action_open_slides"
         app:showAsAction="never" />
 
 </menu>
