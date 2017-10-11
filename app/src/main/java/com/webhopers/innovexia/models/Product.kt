@@ -3,7 +3,7 @@ package com.webhopers.innovexia.models
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-class Product (
+data class Product (
         @SerializedName("id")
         var id: String? = null,
         @SerializedName("name")

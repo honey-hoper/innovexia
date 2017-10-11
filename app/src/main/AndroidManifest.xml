@@ -23,10 +23,14 @@
         <activity
             android:name=".activities.loginActivity.LoginActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".activities.RegisterActivity" />
-        <activity android:name=".activities.ForgotPasswordActivity" />
-        <activity android:name=".activities.mainActivity.MainActivity" />
-        <activity android:name=".activities.CreateVisitActivity">
+        <activity android:name=".activities.RegisterActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.ForgotPasswordActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.mainActivity.MainActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.CreateVisitActivity"
+            android:screenOrientation="portrait">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
