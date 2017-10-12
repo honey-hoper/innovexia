@@ -1,12 +1,15 @@
 package com.webhopers.innovexia.activities
 
+import android.app.Activity
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.*
 import android.widget.DatePicker
 import android.widget.TimePicker
+import com.schibstedspain.leku.LocationPickerActivity
 import com.tokenautocomplete.TokenCompleteTextView
 
 import com.webhopers.innovexia.R
@@ -26,6 +29,10 @@ class CreateVisitActivity : DatePickerDialog.OnDateSetListener, TimePickerDialog
     private var hour = 0
     private var min = 0
 
+    private var address = "Please select location"
+
+    val MAP_API_KEY = "AIzaSyAiBzNcvnsTGZuyH7DBSmCcKHf-_1AD9qY"
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +46,18 @@ class CreateVisitActivity : DatePickerDialog.OnDateSetListener, TimePickerDialog
         return super.onCreateOptionsMenu(menu)
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == 1) {
+            if (resultCode == Activity.RESULT_OK) {
+                val address = data?.getStringExtra(LocationPickerActivity.LOCATION_ADDRESS)
+                if (address != null) {
+                    this.address = address
+                    setLocation()
+                }
+            }
+        }
+    }
+
     fun selectTime() {
         val dialog = TimePickerDialog(this, this, hour, min, false)
         dialog.show()
@@ -49,12 +68,20 @@ class CreateVisitActivity : DatePickerDialog.OnDateSetListener, TimePickerDialog
         dialog.show()
     }
 
+    fun selectLocation() {
+        val intent = LocationPickerActivity.Builder()
+                .withLocation(30.6532354, 76.8135977)
+                .withGeolocApiKey(MAP_API_KEY)
+                .build(this)
+        startActivityForResult(intent, 1)
+    }
+
     /**
      *
      * time and date change listener callbacks
      */
     override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
-        this.hour =hourOfDay
+        this.hour = hourOfDay
         this.min = minute
         setTime()
 
@@ -78,9 +105,11 @@ class CreateVisitActivity : DatePickerDialog.OnDateSetListener, TimePickerDialog
         setUpBuyerField()
         setUpProductField()
         setUpDateAndTime()
+        setLocation()
 
         acv_date_view.setOnClickListener { selectDate() }
         acv_time_view.setOnClickListener { selectTime() }
+        acv_location_view.setOnClickListener { selectLocation() }
     }
 
     private fun setUpToolbar() {
@@ -129,6 +158,10 @@ class CreateVisitActivity : DatePickerDialog.OnDateSetListener, TimePickerDialog
 
     private fun setDate() {
         acv_date_view.text = "$day/$month/$year"
+    }
+
+    private fun setLocation() {
+        acv_location_view.text = address
     }
 
 }
