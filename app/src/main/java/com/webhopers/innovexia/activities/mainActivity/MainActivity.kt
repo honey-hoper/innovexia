@@ -8,6 +8,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import com.webhopers.innovexia.R
+import com.webhopers.innovexia.activities.CreateVisitActivity
 import com.webhopers.innovexia.activities.SplashActivity
 import com.webhopers.innovexia.activities.presentationActivity.PresentationActivity
 import com.webhopers.innovexia.models.ProductCategory
@@ -47,44 +48,20 @@ class MainActivity : MainView, AppCompatActivity() {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      *
      * ui functions
      */
     private fun initUI() {
         setUpToolbar()
-        btn.setOnClickListener { presenter.getCategories() }
+        am_product_btn.setOnClickListener { presenter.getCategories() }
+        am_dcr_btn.setOnClickListener { startCreateVisitActivity() }
     }
 
     private fun setUpToolbar() {
         setSupportActionBar(am_toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
     }
-
-
-
-
-
-
-
-
 
 
     /**
@@ -106,6 +83,10 @@ class MainActivity : MainView, AppCompatActivity() {
         val intent = Intent(this, PresentationActivity::class.java)
         intent.putExtra(CATEGORIES, (filteredList as Serializable))
         startActivity(intent)
+    }
+
+    override fun startCreateVisitActivity() {
+        startActivity(Intent(this, CreateVisitActivity::class.java))
     }
 
     override fun startSplashActivity() {

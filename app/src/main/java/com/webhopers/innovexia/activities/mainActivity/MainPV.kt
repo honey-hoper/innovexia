@@ -59,5 +59,6 @@ interface MainView {
     fun makeToast(message: String)
     fun getSharedPreferences(fileName: String): SharedPreferences
     fun startPresentationActivity(list: List<ProductCategory>)
+    fun startCreateVisitActivity()
     fun startSplashActivity()
 }

@@ -46,6 +46,11 @@ class CreateVisitActivity : DatePickerDialog.OnDateSetListener, TimePickerDialog
         return super.onCreateOptionsMenu(menu)
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == 1) {
             if (resultCode == Activity.RESULT_OK) {
@@ -72,6 +77,7 @@ class CreateVisitActivity : DatePickerDialog.OnDateSetListener, TimePickerDialog
         val intent = LocationPickerActivity.Builder()
                 .withLocation(30.6532354, 76.8135977)
                 .withGeolocApiKey(MAP_API_KEY)
+                .withSearchZone("en_in")
                 .build(this)
         startActivityForResult(intent, 1)
     }
