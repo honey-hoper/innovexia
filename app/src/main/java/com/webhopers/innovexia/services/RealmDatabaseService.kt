@@ -1,9 +1,9 @@
 package com.webhopers.innovexia.services
 
-import com.webhopers.innovexia.models.CustomerRealm
-import com.webhopers.innovexia.models.ImageUrl
-import com.webhopers.innovexia.models.Slide
+import com.webhopers.innovexia.models.*
+import com.webhopers.innovexia.utils.convertToProductRealm
 import io.realm.Realm
+import io.realm.RealmList
 
 
 class RealmDatabaseService {
@@ -65,6 +65,22 @@ class RealmDatabaseService {
             realm.executeTransaction {
                 result.forEach { it.deleteFromRealm() }
             }
+        }
+
+        fun saveProducts(product: List<Product>) {
+            val realmList = RealmList<ProductRealm>()
+
+            product.forEach {
+                realmList.add(it.convertToProductRealm())
+            }
+
+            realm.executeTransaction {
+                it.insertOrUpdate(realmList)
+            }
+        }
+
+        fun getProducts(): List<ProductRealm> {
+            return realm.where(ProductRealm::class.java).findAll().toList()
         }
 
     }

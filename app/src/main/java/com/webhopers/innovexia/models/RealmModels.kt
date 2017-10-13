@@ -23,3 +23,16 @@ open class CustomerRealm(
         var lastName: String? = null,
         var username: String? = null
 ) : RealmObject()
+
+open class ProductRealm(
+        @PrimaryKey
+        var id: String? = null,
+        var name: String? = null,
+        var label: String? = null
+) : RealmObject()
+
+open class ProductCategoryRealm(
+        @PrimaryKey
+        var id: String? = null,
+        var name: String? = null
+) : RealmObject()

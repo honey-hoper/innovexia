@@ -12,6 +12,7 @@ import com.webhopers.innovexia.activities.CreateVisitActivity
 import com.webhopers.innovexia.activities.SplashActivity
 import com.webhopers.innovexia.activities.presentationActivity.PresentationActivity
 import com.webhopers.innovexia.models.ProductCategory
+import com.webhopers.innovexia.services.Syncher
 import com.webhopers.innovexia.utils.show
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.Serializable
@@ -56,6 +57,7 @@ class MainActivity : MainView, AppCompatActivity() {
         setUpToolbar()
         am_product_btn.setOnClickListener { presenter.getCategories() }
         am_dcr_btn.setOnClickListener { startCreateVisitActivity() }
+        am_sync_btn.setOnClickListener { Syncher.initiate() }
     }
 
     private fun setUpToolbar() {

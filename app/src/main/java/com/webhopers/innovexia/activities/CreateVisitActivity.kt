@@ -3,7 +3,10 @@ package com.webhopers.innovexia.activities
 import android.app.Activity
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Context
 import android.content.Intent
+import android.location.Location
+import android.location.LocationManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.*
@@ -31,7 +34,7 @@ class CreateVisitActivity : DatePickerDialog.OnDateSetListener, TimePickerDialog
 
     private var address = "Please select location"
 
-    val MAP_API_KEY = "AIzaSyAiBzNcvnsTGZuyH7DBSmCcKHf-_1AD9qY"
+    private val MAP_API_KEY = "AIzaSyAiBzNcvnsTGZuyH7DBSmCcKHf-_1AD9qY"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,12 +77,22 @@ class CreateVisitActivity : DatePickerDialog.OnDateSetListener, TimePickerDialog
     }
 
     fun selectLocation() {
+        val location = getLastKnownLocation()
+        val lat = location?.latitude ?: 30.6532354
+        val lng = location?.longitude ?: 76.8135977
+
         val intent = LocationPickerActivity.Builder()
-                .withLocation(30.6532354, 76.8135977)
+                .withLocation(lat, lng)
                 .withGeolocApiKey(MAP_API_KEY)
                 .withSearchZone("en_in")
                 .build(this)
         startActivityForResult(intent, 1)
+    }
+
+    fun getLastKnownLocation(): Location? {
+        val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        val location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
+        return location
     }
 
     /**
