@@ -2,6 +2,8 @@ package com.webhopers.innovexia.services
 
 import com.webhopers.innovexia.models.*
 import com.webhopers.innovexia.utils.convertToProduct
+import com.webhopers.innovexia.utils.convertToProductCategory
+import com.webhopers.innovexia.utils.convertToProductCategoryRealm
 import com.webhopers.innovexia.utils.convertToProductRealm
 import io.realm.Realm
 import io.realm.RealmList
@@ -69,6 +71,7 @@ class RealmDatabaseService {
         }
 
         fun saveProducts(product: List<Product>) {
+            val realm = Realm.getDefaultInstance()
             val realmList = RealmList<ProductRealm>()
 
             product.forEach {
@@ -84,6 +87,24 @@ class RealmDatabaseService {
             val realm = Realm.getDefaultInstance()
             val list = realm.where(ProductRealm::class.java).findAll().toList()
             return list.map { it.convertToProduct() }
+        }
+
+        fun saveCategories(categories: List<ProductCategory>) {
+            val realmList = RealmList<ProductCategoryRealm>()
+
+            categories.forEach {
+                realmList.add(it.convertToProductCategoryRealm())
+            }
+
+            realm.executeTransaction {
+                it.insertOrUpdate(realmList)
+            }
+        }
+
+        fun getCategories(): List<ProductCategory> {
+            val realm = Realm.getDefaultInstance()
+            val list = realm.where(ProductCategoryRealm::class.java).findAll().toList()
+            return list.map { it.convertToProductCategory() }
         }
 
     }

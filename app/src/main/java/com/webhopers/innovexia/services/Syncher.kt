@@ -2,6 +2,7 @@ package com.webhopers.innovexia.services
 
 import android.content.Context
 import com.webhopers.innovexia.models.Product
+import com.webhopers.innovexia.models.ProductCategory
 import com.webhopers.innovexia.utils.convertToProductRealm
 import retrofit2.Call
 import retrofit2.Callback
@@ -15,6 +16,7 @@ class Syncher {
 
         fun initiate() {
             syncProducts()
+            syncCategories()
         }
 
         //syncs products and saves to database
@@ -67,6 +69,20 @@ class Syncher {
             return woocomm.products(perPage = perPage, offset = offset)
                     .execute()
                     .body()!!
+        }
+
+        private fun syncCategories() {
+            woocomm.categories()
+                    .enqueue(object : Callback<List<ProductCategory>> {
+                        override fun onFailure(call: Call<List<ProductCategory>>, t: Throwable) {}
+
+                        override fun onResponse(call: Call<List<ProductCategory>>, response: Response<List<ProductCategory>>) {
+                            if (response.isSuccessful) {
+                                RealmDatabaseService.saveCategories(response.body()!!)
+                            }
+                        }
+
+                    })
         }
 
     }

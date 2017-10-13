@@ -12,6 +12,7 @@ import com.webhopers.innovexia.activities.CreateVisitActivity
 import com.webhopers.innovexia.activities.SplashActivity
 import com.webhopers.innovexia.activities.presentationActivity.PresentationActivity
 import com.webhopers.innovexia.models.ProductCategory
+import com.webhopers.innovexia.services.RealmDatabaseService
 import com.webhopers.innovexia.services.Syncher
 import com.webhopers.innovexia.utils.show
 import kotlinx.android.synthetic.main.activity_main.*
@@ -55,7 +56,7 @@ class MainActivity : MainView, AppCompatActivity() {
      */
     private fun initUI() {
         setUpToolbar()
-        am_product_btn.setOnClickListener { presenter.getCategories() }
+        am_product_btn.setOnClickListener { startPresentationActivity() }
         am_dcr_btn.setOnClickListener { startCreateVisitActivity() }
         am_sync_btn.setOnClickListener { Syncher.initiate() }
     }
@@ -80,8 +81,8 @@ class MainActivity : MainView, AppCompatActivity() {
 
     override fun getSharedPreferences(fileName: String) = getSharedPreferences(fileName, Context.MODE_PRIVATE)
 
-    override fun startPresentationActivity(list: List<ProductCategory>) {
-        val filteredList = list.filter { it.publish!! }
+    override fun startPresentationActivity() {
+        val filteredList = RealmDatabaseService.getCategories().filter { it.publish!! }
         val intent = Intent(this, PresentationActivity::class.java)
         intent.putExtra(CATEGORIES, (filteredList as Serializable))
         startActivity(intent)

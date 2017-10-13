@@ -17,33 +17,6 @@ class MainPresenter(val view: MainView) {
 
     /**
      *
-     * it fetches the product categories from woocommerce
-     * and passes it to filter function
-     */
-    fun getCategories() {
-        view.showProgressBar(true)
-        WooCommerceClient.get()
-                .create(WooCommerce::class.java)
-                .categories()
-                .enqueue(object : Callback<List<ProductCategory>> {
-                    override fun onFailure(call: Call<List<ProductCategory>>, t: Throwable) {
-                        view.showProgressBar(false)
-                        view.makeToast("Could not fetch categories: ${t.message}")
-                    }
-
-                    override fun onResponse(call: Call<List<ProductCategory>>, response: Response<List<ProductCategory>>) {
-                        view.showProgressBar(false)
-                        if (response.isSuccessful) {
-                            view.startPresentationActivity(response.body()!!)
-                        } else {
-                            view.makeToast("Could not fetch categories: ${response.code()}")
-                        }
-                    }
-                })
-    }
-
-    /**
-     *
      * log customer out
      */
     fun LogOut() {
@@ -58,7 +31,7 @@ interface MainView {
     fun showProgressBar(bool: Boolean)
     fun makeToast(message: String)
     fun getSharedPreferences(fileName: String): SharedPreferences
-    fun startPresentationActivity(list: List<ProductCategory>)
+    fun startPresentationActivity()
     fun startCreateVisitActivity()
     fun startSplashActivity()
 }
