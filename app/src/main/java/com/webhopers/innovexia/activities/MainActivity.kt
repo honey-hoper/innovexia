@@ -65,8 +65,8 @@ class MainActivity : Syncher.SyncherInterface, AppCompatActivity() {
         startSplashActivity()
     }
 
-    fun showProgressBar(bool: Boolean) {
-        am_pbar.show(bool)
+    fun showSmoothProgressBar(bool: Boolean) {
+        am_spbar.show(bool)
     }
 
     fun makeToast(message: String) {
@@ -94,11 +94,11 @@ class MainActivity : Syncher.SyncherInterface, AppCompatActivity() {
      * syncher interface methods
      */
     override fun preSync() {
-        showProgressBar(true)
+        showSmoothProgressBar(true)
     }
 
     override fun postSync(message: String) {
-        showProgressBar(false)
+        showSmoothProgressBar(false)
         makeToast(message)
     }
 }

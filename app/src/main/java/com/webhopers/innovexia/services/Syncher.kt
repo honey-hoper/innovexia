@@ -50,11 +50,6 @@ class Syncher {
 
                                 //save products to database
                                     RealmDatabaseService.saveProducts(products)
-
-                                    RealmDatabaseService.getProducts().forEach {
-                                        println(it.name)
-                                    }
-
                                 }.start()
                             }
                         }
