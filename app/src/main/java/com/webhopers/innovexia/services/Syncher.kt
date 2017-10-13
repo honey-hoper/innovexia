@@ -1,9 +1,7 @@
 package com.webhopers.innovexia.services
 
-import android.content.Context
 import com.webhopers.innovexia.models.Product
 import com.webhopers.innovexia.models.ProductCategory
-import com.webhopers.innovexia.utils.convertToProductRealm
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -14,9 +12,10 @@ class Syncher {
 
         val woocomm by lazy { WooCommerceClient.get().create(WooCommerce::class.java) }
 
-        fun initiate() {
+        fun initiate(syncherInterface: SyncherInterface) {
+            syncherInterface.preSync()
             syncProducts()
-            syncCategories()
+            syncCategories(syncherInterface)
         }
 
         //syncs products and saves to database
@@ -64,26 +63,38 @@ class Syncher {
 
             }
 
-        //synchronous method to fetch products
+        //synchronous method to fetch products, gets called in syncProducts
         fun getProducts(perPage: String, offset: String) : List<Product> {
             return woocomm.products(perPage = perPage, offset = offset)
                     .execute()
                     .body()!!
         }
 
-        private fun syncCategories() {
+        //fetches product categories and stores in database
+        private fun syncCategories(syncherInterface: SyncherInterface) {
             woocomm.categories()
                     .enqueue(object : Callback<List<ProductCategory>> {
-                        override fun onFailure(call: Call<List<ProductCategory>>, t: Throwable) {}
+                        override fun onFailure(call: Call<List<ProductCategory>>, t: Throwable) {
+                            syncherInterface.postSync("Failed due to ${t.message}")
+                        }
 
                         override fun onResponse(call: Call<List<ProductCategory>>, response: Response<List<ProductCategory>>) {
                             if (response.isSuccessful) {
                                 RealmDatabaseService.saveCategories(response.body()!!)
+                                syncherInterface.postSync("Up to date")
+                            } else {
+                                syncherInterface.postSync("Failed due to ${response.code()}")
                             }
                         }
 
                     })
         }
 
+    }
+
+    //interface for activities to communicate with syncher
+    interface SyncherInterface {
+        fun preSync()
+        fun postSync(message: String)
     }
 }

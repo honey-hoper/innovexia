@@ -1,4 +1,4 @@
-package com.webhopers.innovexia.activities.mainActivity
+package com.webhopers.innovexia.activities
 
 import android.content.Context
 import android.content.Intent
@@ -8,30 +8,38 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import com.webhopers.innovexia.R
-import com.webhopers.innovexia.activities.CreateVisitActivity
-import com.webhopers.innovexia.activities.SplashActivity
 import com.webhopers.innovexia.activities.presentationActivity.PresentationActivity
-import com.webhopers.innovexia.models.ProductCategory
 import com.webhopers.innovexia.services.RealmDatabaseService
+import com.webhopers.innovexia.services.SharedPreferenceService
 import com.webhopers.innovexia.services.Syncher
+import com.webhopers.innovexia.utils.Constants
 import com.webhopers.innovexia.utils.show
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.Serializable
 
-class MainActivity : MainView, AppCompatActivity() {
+class MainActivity : Syncher.SyncherInterface, AppCompatActivity() {
+
 
     private val CATEGORIES = "CATEGORIES"
-
-
-    lateinit var presenter: MainPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        presenter = MainPresenter(this)
-
         initUI()
+    }
+
+    private fun initUI() {
+        setUpToolbar()
+        am_product_btn.setOnClickListener { startPresentationActivity() }
+        am_dcr_btn.setOnClickListener { startCreateVisitActivity() }
+        am_sync_btn.setOnClickListener { Syncher.initiate(this) }
+    }
+
+
+    private fun setUpToolbar() {
+        setSupportActionBar(am_toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
     }
 
 
@@ -44,57 +52,53 @@ class MainActivity : MainView, AppCompatActivity() {
         val id = item.itemId
 
         when (id) {
-            R.id.action_log_out -> presenter.LogOut()
+            R.id.action_log_out -> LogOut()
         }
         return super.onOptionsItemSelected(item)
     }
 
 
-    /**
-     *
-     * ui functions
-     */
-    private fun initUI() {
-        setUpToolbar()
-        am_product_btn.setOnClickListener { startPresentationActivity() }
-        am_dcr_btn.setOnClickListener { startCreateVisitActivity() }
-        am_sync_btn.setOnClickListener { Syncher.initiate() }
+    fun LogOut() {
+        val preferences = getSharedPreferences(Constants.customerStatusFile, Context.MODE_PRIVATE)
+        SharedPreferenceService.setCustomerStatus(preferences, Constants.customerLoggedOut)
+        RealmDatabaseService.removeCustomer()
+        startSplashActivity()
     }
 
-    private fun setUpToolbar() {
-        setSupportActionBar(am_toolbar)
-        supportActionBar?.setDisplayShowTitleEnabled(false)
-    }
-
-
-    /**
-     *
-     * view functions
-     */
-    override fun showProgressBar(bool: Boolean) {
+    fun showProgressBar(bool: Boolean) {
         am_pbar.show(bool)
     }
 
-    override fun makeToast(message: String) {
+    fun makeToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
-    override fun getSharedPreferences(fileName: String) = getSharedPreferences(fileName, Context.MODE_PRIVATE)
-
-    override fun startPresentationActivity() {
+    fun startPresentationActivity() {
         val filteredList = RealmDatabaseService.getCategories().filter { it.publish!! }
         val intent = Intent(this, PresentationActivity::class.java)
         intent.putExtra(CATEGORIES, (filteredList as Serializable))
         startActivity(intent)
     }
 
-    override fun startCreateVisitActivity() {
+    fun startCreateVisitActivity() {
         startActivity(Intent(this, CreateVisitActivity::class.java))
     }
 
-    override fun startSplashActivity() {
+    fun startSplashActivity() {
         startActivity(Intent(this, SplashActivity::class.java))
         finish()
     }
 
+    /**
+     *
+     * syncher interface methods
+     */
+    override fun preSync() {
+        showProgressBar(true)
+    }
+
+    override fun postSync(message: String) {
+        showProgressBar(false)
+        makeToast(message)
+    }
 }

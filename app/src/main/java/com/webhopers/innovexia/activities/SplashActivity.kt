@@ -7,7 +7,6 @@ import android.os.Bundle
 
 import com.webhopers.innovexia.R
 import com.webhopers.innovexia.activities.loginActivity.LoginActivity
-import com.webhopers.innovexia.activities.mainActivity.MainActivity
 import com.webhopers.innovexia.services.SharedPreferenceService
 import com.webhopers.innovexia.utils.Constants
 
