@@ -28,11 +28,13 @@ open class ProductRealm(
         @PrimaryKey
         var id: String? = null,
         var name: String? = null,
-        var label: String? = null
+        var label: String? = null,
+        var publish: Boolean? = null
 ) : RealmObject()
 
 open class ProductCategoryRealm(
         @PrimaryKey
         var id: String? = null,
-        var name: String? = null
+        var name: String? = null,
+        var publish: Boolean? = null
 ) : RealmObject()

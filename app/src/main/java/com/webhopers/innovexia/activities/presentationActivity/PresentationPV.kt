@@ -38,7 +38,7 @@ class PresentationPresenter(val view: PresentationView) {
      * and sets the recycler view adapter
      */
     fun filterUrlsAndSetAdapter(list: List<Product>) {
-        val filteredList = list.filter { it.publish }
+        val filteredList = list.filter { it.publish!! }
         val urls = filteredList.map { it.label }
         view.setAdapter(urls)
     }

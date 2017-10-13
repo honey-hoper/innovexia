@@ -1,6 +1,7 @@
 package com.webhopers.innovexia.services
 
 import com.webhopers.innovexia.models.*
+import com.webhopers.innovexia.utils.convertToProduct
 import com.webhopers.innovexia.utils.convertToProductRealm
 import io.realm.Realm
 import io.realm.RealmList
@@ -79,8 +80,10 @@ class RealmDatabaseService {
             }
         }
 
-        fun getProducts(): List<ProductRealm> {
-            return realm.where(ProductRealm::class.java).findAll().toList()
+        fun getProducts(): List<Product> {
+            val realm = Realm.getDefaultInstance()
+            val list = realm.where(ProductRealm::class.java).findAll().toList()
+            return list.map { it.convertToProduct() }
         }
 
     }

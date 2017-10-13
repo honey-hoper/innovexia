@@ -35,8 +35,19 @@ fun Product.convertToProductRealm() : ProductRealm {
     return ProductRealm(
             this.id,
             this.name,
+            this.label,
+            this.publish
+    )
+}
+
+fun ProductRealm.convertToProduct() : Product {
+    return Product(
+            this.id,
+            this.name,
+            this.publish,
             this.label
     )
+
 }
 
 fun ProductCategory.convertToProductCategoryRealm() : ProductCategoryRealm {

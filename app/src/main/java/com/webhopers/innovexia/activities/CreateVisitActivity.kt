@@ -18,6 +18,7 @@ import com.tokenautocomplete.TokenCompleteTextView
 import com.webhopers.innovexia.R
 import com.webhopers.innovexia.adapters.BuyerAutoCompleteAdapter
 import com.webhopers.innovexia.adapters.ProductsAdapter
+import com.webhopers.innovexia.services.RealmDatabaseService
 import com.webhopers.innovexia.utils.FakeData
 import kotlinx.android.synthetic.main.activity_create_visit.*
 import java.text.SimpleDateFormat
@@ -143,7 +144,7 @@ class CreateVisitActivity : DatePickerDialog.OnDateSetListener, TimePickerDialog
     }
 
     private fun setUpProductField() {
-        acv_product_field.setAdapter(ProductsAdapter(this, R.layout.product_view, FakeData.getProducts().toMutableList()))
+        acv_product_field.setAdapter(ProductsAdapter(this, R.layout.product_view, RealmDatabaseService.getProducts().filter { it.publish!! }.toMutableList()))
         acv_product_field.setTokenClickStyle(TokenCompleteTextView.TokenClickStyle.Select)
         acv_product_field.allowDuplicates(false)
     }

@@ -9,7 +9,7 @@ data class Product (
         @SerializedName("name")
         var name: String? = null,
         @SerializedName("publish_in_app")
-        var publish: Boolean = true,
+        var publish: Boolean? = true,
         @SerializedName("product_visualate")
         var label: String? = null
 ) : Serializable
@@ -21,6 +21,6 @@ class ProductCategory (
         @SerializedName("name")
         var name: String? = null,
         @SerializedName("publish_in_app")
-        var publish: Boolean = true
+        var publish: Boolean? = true
 
 ) : Serializable

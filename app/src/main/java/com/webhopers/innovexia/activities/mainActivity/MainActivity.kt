@@ -81,7 +81,7 @@ class MainActivity : MainView, AppCompatActivity() {
     override fun getSharedPreferences(fileName: String) = getSharedPreferences(fileName, Context.MODE_PRIVATE)
 
     override fun startPresentationActivity(list: List<ProductCategory>) {
-        val filteredList = list.filter { it.publish }
+        val filteredList = list.filter { it.publish!! }
         val intent = Intent(this, PresentationActivity::class.java)
         intent.putExtra(CATEGORIES, (filteredList as Serializable))
         startActivity(intent)
