@@ -70,7 +70,7 @@ class Syncher {
             woocomm.categories()
                     .enqueue(object : Callback<List<ProductCategory>> {
                         override fun onFailure(call: Call<List<ProductCategory>>, t: Throwable) {
-                            syncherInterface.postSync("Failed due to ${t.message}")
+                            syncherInterface.postSync("Network Error")
                         }
 
                         override fun onResponse(call: Call<List<ProductCategory>>, response: Response<List<ProductCategory>>) {

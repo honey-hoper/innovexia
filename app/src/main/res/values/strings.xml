@@ -32,6 +32,9 @@
     <string name="forgot_password">Forgot Password?</string>
     <string name="send_password">Send new password to this email</string>
     <string name="enter_buyer">Enter Buyer</string>
+    <string name="products">Products</string>
+    <string name="create_visit">Create Visit</string>
+    <string name="sync">Sync Database</string>
     <!-- Activities -->
 
 </resources>

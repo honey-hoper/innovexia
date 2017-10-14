@@ -49,8 +49,6 @@
     <FrameLayout
         android:layout_width="240dp"
         android:layout_height="match_parent"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
         android:layout_gravity="start"
         android:background="#F8F8F8"
         android:elevation="16dp">
