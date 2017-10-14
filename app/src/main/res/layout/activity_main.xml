@@ -33,169 +33,173 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <LinearLayout
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-
-        <fr.castorflex.android.smoothprogressbar.SmoothProgressBar
-            android:id="@+id/am_spbar"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:indeterminate="true"
-            app:spb_sections_count="1"
-            app:spb_color="@color/colorAccent"
-            app:spb_speed="3.0"
-            app:spb_stroke_width="3dp"
-            app:spb_stroke_separator_length="4dp"
-            app:spb_progressiveStart_activated="true"
-            app:spb_progressiveStart_speed="1.5"
-            app:spb_progressiveStop_speed="3.5"
-            android:visibility="invisible" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
+            <fr.castorflex.android.smoothprogressbar.SmoothProgressBar
+                android:id="@+id/am_spbar"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:indeterminate="true"
+                app:spb_sections_count="1"
+                app:spb_color="@color/colorAccent"
+                app:spb_speed="3.0"
+                app:spb_stroke_width="3dp"
+                app:spb_stroke_separator_length="4dp"
+                app:spb_progressiveStart_activated="true"
+                app:spb_progressiveStart_speed="1.5"
+                app:spb_progressiveStop_speed="3.5"
+                android:visibility="invisible" />
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/am_product_btn"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginTop="2dp"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
-                android:foreground="@drawable/card_selector">
+                android:orientation="horizontal">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                <android.support.v7.widget.CardView
+                    android:id="@+id/am_product_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginEnd="2dp"
+                    android:foreground="@drawable/card_selector">
 
-                    <com.webhopers.innovexia.views.SquareImageView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_margin="8dp"
-                        android:src="@drawable/product_icon_drawable"/>
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_gravity="center_horizontal|bottom"
-                        android:theme="@style/NormalText.Bold"
-                        android:text="@string/products"/>
+                        <com.webhopers.innovexia.views.SquareImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="8dp"
+                            android:src="@drawable/product_icon_drawable"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:layout_gravity="center_horizontal|bottom"
+                            android:theme="@style/NormalText.Bold"
+                            android:text="@string/products"/>
 
 
-                </LinearLayout>
+                    </LinearLayout>
 
-            </android.support.v7.widget.CardView>
+                </android.support.v7.widget.CardView>
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/am_dcr_btn"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginTop="2dp"
-                android:layout_marginEnd="2dp"
-                android:foreground="@drawable/card_selector">
+                <android.support.v7.widget.CardView
+                    android:id="@+id/am_dcr_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="2dp"
+                    android:foreground="@drawable/card_selector">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <com.webhopers.innovexia.views.SquareImageView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_margin="8dp"
-                        android:src="@drawable/create_visit_icon_drawable"/>
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_gravity="center_horizontal|bottom"
-                        android:theme="@style/NormalText.Bold"
-                        android:text="@string/create_visit"/>
+                        <com.webhopers.innovexia.views.SquareImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="8dp"
+                            android:src="@drawable/create_visit_icon_drawable"/>
 
-                </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:layout_gravity="center_horizontal|bottom"
+                            android:theme="@style/NormalText.Bold"
+                            android:text="@string/create_visit"/>
 
-            </android.support.v7.widget.CardView>
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/am_sync_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginEnd="2dp"
+                    android:foreground="@drawable/card_selector">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <com.webhopers.innovexia.views.SquareImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="8dp"
+                            android:src="@drawable/sync_icon_drawable"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:layout_gravity="center_horizontal|bottom"
+                            android:theme="@style/NormalText.Bold"
+                            android:text="@string/sync"/>
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="2dp"
+                    android:foreground="@drawable/card_selector">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <com.webhopers.innovexia.views.SquareImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="8dp"
+                            android:src="@color/cardview_dark_background"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:layout_gravity="center_horizontal|bottom"
+                            android:theme="@style/NormalText.Bold"
+                            android:text="empty"/>
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+            </LinearLayout>
         </LinearLayout>
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/am_sync_btn"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginTop="2dp"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
-                android:foreground="@drawable/card_selector">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <com.webhopers.innovexia.views.SquareImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="8dp"
-                        android:src="@drawable/sync_icon_drawable"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_gravity="center_horizontal|bottom"
-                        android:theme="@style/NormalText.Bold"
-                        android:text="@string/sync"/>
-
-                </LinearLayout>
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginTop="2dp"
-                android:layout_marginEnd="2dp"
-                android:foreground="@drawable/card_selector">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <com.webhopers.innovexia.views.SquareImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="8dp"
-                        android:src="@color/cardview_dark_background"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_gravity="center_horizontal|bottom"
-                        android:theme="@style/NormalText.Bold"
-                        android:text="empty"/>
-
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-        </LinearLayout>
-    </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 
 </android.support.design.widget.CoordinatorLayout>
