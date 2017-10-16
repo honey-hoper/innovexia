@@ -12,12 +12,16 @@ fun View.show(bool: Boolean) {
 fun TextInputEditText.value() = this.text.toString().trim()
 
 fun Customer.convertToCustomerRealm(): CustomerRealm {
+
+    val phone = this.metaData?.findLast { it.key == "phone1" }
+
     return CustomerRealm(
             this.id,
             this.email,
             this.firstName,
             this.lastName,
-            this.username
+            this.username,
+            phone?.value
     )
 }
 
@@ -27,7 +31,8 @@ fun CustomerRealm.convertToCustomer(): Customer {
             this.email,
             this.firstName,
             this.lastName,
-            this.username
+            this.username,
+            metaData = listOf<MetaData>(MetaData("phone1", this.phone))
     )
 }
 

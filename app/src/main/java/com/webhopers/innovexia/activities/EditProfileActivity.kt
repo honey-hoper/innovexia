@@ -8,6 +8,7 @@ import android.widget.Toast
 
 import com.webhopers.innovexia.R
 import com.webhopers.innovexia.models.Customer
+import com.webhopers.innovexia.models.MetaData
 import com.webhopers.innovexia.services.RealmDatabaseService
 import com.webhopers.innovexia.services.WooCommerce
 import com.webhopers.innovexia.services.WooCommerceClient
@@ -80,6 +81,7 @@ class EditProfileActivity : AppCompatActivity() {
             "Email" -> customer.email = input
             "First Name" -> customer.firstName = input
             "Last Name" -> customer.lastName = input
+            "Phone" -> customer.metaData = listOf(MetaData("phone1", input))
         }
 
         WooCommerceClient.get()

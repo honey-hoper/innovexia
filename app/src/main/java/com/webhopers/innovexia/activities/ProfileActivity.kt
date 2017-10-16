@@ -61,6 +61,7 @@ class ProfileActivity : AppCompatActivity() {
         apro_email.text = customer.email ?: ""
         apro_first_name.text = customer.firstName ?: ""
         apro_last_name.text = customer.lastName ?: ""
+        apro_phone.text = customer.phone ?: ""
     }
 
     fun startEditProfileActivity(intentData: String) {

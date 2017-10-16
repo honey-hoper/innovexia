@@ -14,7 +14,16 @@ class Customer (
         @SerializedName("username")
         var username: String? = null,
         @SerializedName("password")
-        var password: String? = null
+        var password: String? = null,
+        @SerializedName("meta_data")
+        var metaData: List<MetaData>? = null
+)
+
+class MetaData (
+        @SerializedName("key")
+        var key: String? = null,
+        @SerializedName("value")
+        var value: String? = null
 )
 
 

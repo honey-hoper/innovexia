@@ -21,7 +21,8 @@ open class CustomerRealm(
         var email: String? = null,
         var firstName: String? = null,
         var lastName: String? = null,
-        var username: String? = null
+        var username: String? = null,
+        var phone: String? = null
 ) : RealmObject()
 
 open class ProductRealm(
