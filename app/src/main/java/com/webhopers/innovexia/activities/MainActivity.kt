@@ -9,6 +9,7 @@ import android.view.MenuItem
 import android.widget.Toast
 import com.webhopers.innovexia.R
 import com.webhopers.innovexia.activities.presentationActivity.PresentationActivity
+import com.webhopers.innovexia.dialogs.ListSlidesDialog
 import com.webhopers.innovexia.services.RealmDatabaseService
 import com.webhopers.innovexia.services.SharedPreferenceService
 import com.webhopers.innovexia.services.Syncher
@@ -35,6 +36,7 @@ class MainActivity : Syncher.SyncherInterface, AppCompatActivity() {
         am_dcr_btn.setOnClickListener { startCreateVisitActivity() }
         am_sync_btn.setOnClickListener { Syncher.initiate(this) }
         am_profile_btn.setOnClickListener { startProfileActivity() }
+        am_slide_btn.setOnClickListener { OpenListSlidesDialog() }
     }
 
 
@@ -56,6 +58,17 @@ class MainActivity : Syncher.SyncherInterface, AppCompatActivity() {
             R.id.action_log_out -> LogOut()
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    fun OpenListSlidesDialog() {
+        val displayValues = RealmDatabaseService.getSlides().map { it.name }
+
+        if (displayValues.isEmpty()) {
+            Toast.makeText(this, "No Slide to select", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        ListSlidesDialog(this, displayValues.toTypedArray(), true, listOf())
     }
 
 
