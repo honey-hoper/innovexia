@@ -81,7 +81,6 @@ class Syncher {
                                 syncherInterface.postSync("Failed due to ${response.code()}")
                             }
                         }
-
                     })
         }
 

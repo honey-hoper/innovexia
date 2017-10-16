@@ -34,6 +34,7 @@ class MainActivity : Syncher.SyncherInterface, AppCompatActivity() {
         am_product_btn.setOnClickListener { startPresentationActivity() }
         am_dcr_btn.setOnClickListener { startCreateVisitActivity() }
         am_sync_btn.setOnClickListener { Syncher.initiate(this) }
+        am_profile_btn.setOnClickListener { startProfileActivity() }
     }
 
 
@@ -82,6 +83,10 @@ class MainActivity : Syncher.SyncherInterface, AppCompatActivity() {
 
     fun startCreateVisitActivity() {
         startActivity(Intent(this, CreateVisitActivity::class.java))
+    }
+
+    fun startProfileActivity() {
+        startActivity(Intent(this, ProfileActivity::class.java))
     }
 
     fun startSplashActivity() {

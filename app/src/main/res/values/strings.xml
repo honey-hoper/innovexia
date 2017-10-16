@@ -35,6 +35,13 @@
     <string name="products">Products</string>
     <string name="create_visit">Create Visit</string>
     <string name="sync">Sync Database</string>
+    <string name="profile">My Profile</string>
+    <string name="username">username</string>
+    <string name="email">email</string>
+    <string name="first_name">first name</string>
+    <string name="last_name">last name</string>
+    <string name="phone">phone</string>
+    <string name="update">Update</string>
     <!-- Activities -->
 
 </resources>

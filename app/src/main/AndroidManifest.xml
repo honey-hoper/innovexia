@@ -7,9 +7,12 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-    <uses-feature android:name="android.hardware.location.network" android:required="false" />
-    <uses-feature android:name="android.hardware.location.gps" android:required="false"  />
-
+    <uses-feature
+        android:name="android.hardware.location.network"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.location.gps"
+        android:required="false" />
     <uses-feature
         android:glEsVersion="0x00020000"
         android:required="true" />
@@ -22,17 +25,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <meta-data
             android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version"
-            />
-
+            android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyAiBzNcvnsTGZuyH7DBSmCcKHf-_1AD9qY"
-            />
-
+            android:value="AIzaSyAiBzNcvnsTGZuyH7DBSmCcKHf-_1AD9qY" />
 
         <activity
             android:name=".activities.presentationActivity.PresentationActivity"
@@ -40,44 +38,50 @@
         <activity
             android:name=".activities.SplashActivity"
             android:screenOrientation="portrait">
-
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".activities.loginActivity.LoginActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".activities.RegisterActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".activities.ForgotPasswordActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".activities.MainActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".activities.CreateVisitActivity"
-            android:screenOrientation="portrait">
-        </activity>
-
+        <activity
+            android:name=".activities.RegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.ForgotPasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.CreateVisitActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.schibstedspain.leku.LocationPickerActivity"
             android:label="@string/title_activity_location_picker"
+            android:parentActivityName=".activities.CreateVisitActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
-            android:windowSoftInputMode="adjustPan"
-            android:parentActivityName=".activities.CreateVisitActivity">
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
-            <meta-data android:name="android.app.searchable"
+
+            <meta-data
+                android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.CreateVisitActivity" />
         </activity>
-
+        <activity
+            android:name=".activities.ProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activities.EditProfileActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

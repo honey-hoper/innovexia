@@ -35,6 +35,10 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="LargeText.Bold" parent="LargeText">
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="SmallText.Accent" parent="SmallText">
         <item name="android:textColor">@color/colorAccent</item>
     </style>

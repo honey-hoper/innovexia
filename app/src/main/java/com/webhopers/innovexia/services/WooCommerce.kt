@@ -24,5 +24,8 @@ interface WooCommerce {
     @POST("customers")
     fun createCustomer(@Body customer: Customer): Call<Customer>
 
+    @POST("customers/{id}")
+    fun updateCustomer(@Path("id") id: String, @Body customer: Customer): Call<Customer>
+
 }
 

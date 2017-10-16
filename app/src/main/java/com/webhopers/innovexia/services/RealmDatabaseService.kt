@@ -23,7 +23,7 @@ class RealmDatabaseService {
         fun getSlides(): List<Slide> {
             val result = realm.where(Slide::class.java)
                     .findAll()
-            return result
+            return result.toList()
         }
 
         fun getSlide(slideName: String): Slide? {
@@ -54,8 +54,9 @@ class RealmDatabaseService {
         }
 
         fun saveCustomer(customer: CustomerRealm) {
+            val realm = Realm.getDefaultInstance()
             realm.executeTransaction {
-                it.insert(customer)
+                it.insertOrUpdate(customer)
             }
         }
 
