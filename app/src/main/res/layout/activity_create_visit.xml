@@ -35,91 +35,142 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <AutoCompleteTextView
-                android:id="@+id/acv_buyer_field"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:theme="@style/NormalText"
-                android:hint="@string/enter_buyer"/>
+                android:layout_margin="16dp">
+                <AutoCompleteTextView
+                    android:id="@+id/acv_buyer_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/NormalText"
+                    android:hint="@string/enter_buyer"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:theme="@style/NormalText"
-                android:text="Enter all the products here which buyer is interested to buy or had discussed to buy. "/>
+            </android.support.design.widget.TextInputLayout>
 
-            <com.webhopers.innovexia.views.ProductCompletionView
-                android:id="@+id/acv_product_field"
+
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
-                android:theme="@style/NormalText" />
+                android:layout_marginBottom="62dp">
+                <com.webhopers.innovexia.views.ProductCompletionView
+                    android:id="@+id/acv_product_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/enter_products"
+                    android:theme="@style/NormalText" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="8dp"
-                android:theme="@style/NormalText"
-                android:text="Click on time or date to change it."/>
+            </android.support.design.widget.TextInputLayout>
 
-            <LinearLayout
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="32dp"
+                android:background="#808080"/>
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
-                android:orientation="horizontal">
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:layout_marginBottom="32dp">
+
+                <TextView
+                    android:id="@+id/acv_time_lbl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:text="@string/time"/>
 
                 <TextView
                     android:id="@+id/acv_time_view"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:padding="4dp"
+                    android:layout_below="@id/acv_time_lbl"
+                    android:layout_marginTop="8dp"
                     android:theme="@style/SmallText.Bold"
-                    tools:text="12:30 PM"/>
+                    tools:text="12:30 AM"/>
+
+                <ImageButton
+                    android:id="@+id/acv_edit_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/edit"
+                    android:background="@null"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:layout_marginBottom="32dp">
+
+                <TextView
+                    android:id="@+id/acv_date_lbl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:text="@string/date"/>
 
                 <TextView
                     android:id="@+id/acv_date_view"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:padding="4dp"
+                    android:layout_below="@id/acv_date_lbl"
+                    android:layout_marginTop="8dp"
                     android:theme="@style/SmallText.Bold"
-                    tools:text="12/07/2017"/>
+                    tools:text="21/07/2017"/>
 
-            </LinearLayout>
+                <ImageButton
+                    android:id="@+id/acv_edit_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/edit"
+                    android:background="@null"/>
 
+            </RelativeLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="8dp"
-                android:theme="@style/NormalText"
-                android:text="Please select location where you met the buyer"/>
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:layout_marginBottom="32dp">
 
-            <TextView
-                android:id="@+id/acv_location_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="4dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:theme="@style/SmallText.Bold"
-                tools:text="Royal Enclave, Patiala"/>
+                <TextView
+                    android:id="@+id/acv_location_lbl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:text="@string/location"/>
 
+                <TextView
+                    android:id="@+id/acv_location_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/acv_location_lbl"
+                    android:layout_marginTop="8dp"
+                    android:theme="@style/SmallText.Bold"
+                    tools:text="Patiala"/>
+
+                <ImageButton
+                    android:id="@+id/acv_edit_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/edit"
+                    android:background="@null"/>
+
+            </RelativeLayout>
         </LinearLayout>
     </ScrollView>
 
@@ -127,7 +178,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="@color/colorAccent"
+        android:background="@drawable/accent_btn_selector"
         android:textColor="#fff"
-        android:text="submit"/>
+        android:textAppearance="@style/NormalText.Bold"
+        android:text="@string/submit"/>
 </android.support.design.widget.CoordinatorLayout>

@@ -129,9 +129,9 @@ class CreateVisitActivity : DatePickerDialog.OnDateSetListener, TimePickerDialog
         setUpDateAndTime()
         setLocation()
 
-        acv_date_view.setOnClickListener { selectDate() }
-        acv_time_view.setOnClickListener { selectTime() }
-        acv_location_view.setOnClickListener { selectLocation() }
+        acv_edit_date.setOnClickListener { selectDate() }
+        acv_edit_time.setOnClickListener { selectTime() }
+        acv_edit_location.setOnClickListener { selectLocation() }
     }
 
     private fun setUpToolbar() {
