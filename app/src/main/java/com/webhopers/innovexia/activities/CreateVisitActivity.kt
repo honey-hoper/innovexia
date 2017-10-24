@@ -5,12 +5,14 @@ import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
+import android.graphics.Typeface
 import android.location.Location
 import android.location.LocationManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.*
 import android.widget.DatePicker
+import android.widget.TextView
 import android.widget.TimePicker
 import com.schibstedspain.leku.LocationPickerActivity
 import com.tokenautocomplete.TokenCompleteTextView
@@ -137,6 +139,17 @@ class CreateVisitActivity : DatePickerDialog.OnDateSetListener, TimePickerDialog
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(false)
+
+        var i = 0
+        while (i < acv_toolbar.childCount) {
+            val v = acv_toolbar.getChildAt(i)
+            if (v is TextView) {
+                val typeFace = Typeface.createFromAsset(assets, "fonts/poppins.ttf")
+                v.setTypeface(typeFace)
+                break
+            }
+            i++
+        }
     }
 
     private fun setUpBuyerField() {

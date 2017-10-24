@@ -1,9 +1,11 @@
 package com.webhopers.innovexia.activities
 
+import android.graphics.Typeface
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.InputFilter
 import android.text.InputType
+import android.widget.TextView
 import android.widget.Toast
 
 import com.webhopers.innovexia.R
@@ -44,6 +46,17 @@ class EditProfileActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(false)
+
+        var i = 0
+        while (i < aep_toolbar.childCount) {
+            val v = aep_toolbar.getChildAt(i)
+            if (v is TextView) {
+                val typeFace = Typeface.createFromAsset(assets, "fonts/poppins.ttf")
+                v.setTypeface(typeFace)
+                break
+            }
+            i++
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

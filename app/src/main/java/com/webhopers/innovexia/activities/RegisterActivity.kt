@@ -1,7 +1,9 @@
 package com.webhopers.innovexia.activities
 
+import android.graphics.Typeface
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
 import android.widget.Toast
 
 import com.webhopers.innovexia.R
@@ -123,6 +125,17 @@ class RegisterActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(false)
+
+        var i = 0
+        while (i < ar_toolbar.childCount) {
+            val v = ar_toolbar.getChildAt(i)
+            if (v is TextView) {
+                val typeFace = Typeface.createFromAsset(assets, "fonts/poppins.ttf")
+                v.setTypeface(typeFace)
+                break
+            }
+            i++
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

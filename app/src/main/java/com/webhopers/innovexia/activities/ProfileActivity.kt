@@ -1,8 +1,10 @@
 package com.webhopers.innovexia.activities
 
 import android.content.Intent
+import android.graphics.Typeface
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
 
 import com.webhopers.innovexia.R
 import com.webhopers.innovexia.models.CustomerRealm
@@ -49,6 +51,17 @@ class ProfileActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(false)
+
+        var i = 0
+        while (i < apro_toolbar.childCount) {
+            val v = apro_toolbar.getChildAt(i)
+            if (v is TextView) {
+                val typeFace = Typeface.createFromAsset(assets, "fonts/poppins.ttf")
+                v.setTypeface(typeFace)
+                break
+            }
+            i++
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

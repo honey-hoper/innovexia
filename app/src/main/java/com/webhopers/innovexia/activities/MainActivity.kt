@@ -2,10 +2,12 @@ package com.webhopers.innovexia.activities
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Typeface
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.TextView
 import android.widget.Toast
 import com.webhopers.innovexia.R
 import com.webhopers.innovexia.activities.presentationActivity.PresentationActivity
@@ -43,6 +45,16 @@ class MainActivity : Syncher.SyncherInterface, AppCompatActivity() {
     private fun setUpToolbar() {
         setSupportActionBar(am_toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
+        var i = 0
+        while (i < am_toolbar.childCount) {
+            val v = am_toolbar.getChildAt(i)
+            if (v is TextView) {
+                val typeFace = Typeface.createFromAsset(assets, "fonts/poppins.ttf")
+                v.setTypeface(typeFace)
+                break
+            }
+            i++
+        }
     }
 
 

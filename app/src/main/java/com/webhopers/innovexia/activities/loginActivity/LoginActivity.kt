@@ -2,9 +2,11 @@ package com.webhopers.innovexia.activities.loginActivity
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Typeface
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 
 import com.webhopers.innovexia.R
 import com.webhopers.innovexia.activities.ForgotPasswordActivity
@@ -41,6 +43,17 @@ class LoginActivity : LoginView, AppCompatActivity() {
     private fun setUpToolbar() {
         setSupportActionBar(al_toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
+
+        var i = 0
+        while (i < al_toolbar.childCount) {
+            val v = al_toolbar.getChildAt(i)
+            if (v is TextView) {
+                val typeFace = Typeface.createFromAsset(assets, "fonts/poppins.ttf")
+                v.setTypeface(typeFace)
+                break
+            }
+            i++
+        }
     }
 
     fun startRegisterActivity() {

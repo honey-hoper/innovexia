@@ -2,6 +2,7 @@ package com.webhopers.innovexia.activities.presentationActivity
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Typeface
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.ActionBarDrawerToggle
@@ -10,6 +11,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.TextView
 import android.widget.Toast
 
 import com.webhopers.innovexia.R
@@ -96,6 +98,17 @@ class PresentationActivity : PresentationView, AppCompatActivity() {
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(false)
+
+        var i = 0
+        while (i < ap_toolbar.childCount) {
+            val v = ap_toolbar.getChildAt(i)
+            if (v is TextView) {
+                val typeFace = Typeface.createFromAsset(assets, "fonts/poppins.ttf")
+                v.setTypeface(typeFace)
+                break
+            }
+            i++
+        }
 
         drawerToggle = ActionBarDrawerToggle(this, ap_drawer,R.string.open, R.string.close)
         drawerToggle.syncState()
