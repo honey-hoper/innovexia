@@ -25,6 +25,11 @@ class MainActivity : Syncher.SyncherInterface, AppCompatActivity() {
 
     private val CATEGORIES = "CATEGORIES"
 
+
+    private var backPressed = false
+    private var timeElapsed = 0L
+    private val INTERVAL = 2000
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -70,6 +75,16 @@ class MainActivity : Syncher.SyncherInterface, AppCompatActivity() {
             R.id.action_log_out -> LogOut()
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onBackPressed() {
+        if (timeElapsed + INTERVAL > System.currentTimeMillis()) {
+            super.onBackPressed()
+            return
+        }
+
+        makeToast("Press again to exit")
+        timeElapsed = System.currentTimeMillis()
     }
 
     fun OpenListSlidesDialog() {
