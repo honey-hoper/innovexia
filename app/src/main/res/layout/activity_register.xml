@@ -110,6 +110,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
+            android:theme="@style/ButtonAccent"
             android:textAppearance="@style/SmallText"
             android:text="@string/register"/>
 

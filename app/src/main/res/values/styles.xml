@@ -66,5 +66,18 @@
     </style>
     <!-- Appbar -->
 
+    <!-- Buttons -->
+    <style name="ButtonPrimary" parent="Base.Widget.AppCompat.Button.Colored">
+        <item name="android:textColor">#FFF</item>
+        <item name="colorButtonNormal">@color/colorPrimary</item>
+    </style>
+
+    <style name="ButtonAccent" parent="Base.Widget.AppCompat.Button.Colored">
+        <item name="android:textColor">#FFF</item>
+        <item name="colorButtonNormal">@color/colorAccent</item>
+    </style>
+
+    <!-- Buttons -->
+
 
 </resources>

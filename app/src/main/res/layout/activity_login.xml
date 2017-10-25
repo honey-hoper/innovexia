@@ -87,6 +87,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:theme="@style/ButtonPrimary"
                     android:textAppearance="@style/SmallText"
                     android:text="@string/login"/>
 
@@ -95,6 +96,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:theme="@style/ButtonAccent"
                     android:textAppearance="@style/SmallText"
                     android:text="@string/register"/>
             </LinearLayout>
@@ -123,5 +125,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal"
         android:padding="16dp"
+        android:textColor="@color/colorAccent"
         android:text="@string/forgot_password"/>
 </android.support.design.widget.CoordinatorLayout>
