@@ -11,6 +11,10 @@
         <item name="windowActionModeOverlay">true</item>
     </style>
 
+    <style name="Splash" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/splash</item>
+    </style>
+
     <!-- Text -->
     <style name="SmallText" parent="AppTheme">
         <item name="android:textSize">12sp</item>
@@ -61,5 +65,6 @@
         <item name="android:textColorSecondary">#FFF</item>
     </style>
     <!-- Appbar -->
+
 
 </resources>
