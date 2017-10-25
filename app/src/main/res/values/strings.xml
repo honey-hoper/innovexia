@@ -19,6 +19,7 @@
     <!-- Menu -->
     <string name="slides">Slides</string>
     <string name="logout">Log out</string>
+    <string name="manage_slides">Manage Slides</string>
     <!-- Menu -->
 
     <!-- Activities -->

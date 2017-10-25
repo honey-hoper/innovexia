@@ -80,7 +80,10 @@
         <activity
             android:name=".activities.ProfileActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".activities.EditProfileActivity"
+        <activity
+            android:name=".activities.EditProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activities.ManageSlidesActivity"
             android:screenOrientation="portrait"/>
     </application>
 

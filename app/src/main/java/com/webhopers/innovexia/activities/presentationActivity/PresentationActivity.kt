@@ -1,6 +1,5 @@
 package com.webhopers.innovexia.activities.presentationActivity
 
-import android.content.Context
 import android.content.Intent
 import android.graphics.Typeface
 import android.support.v7.app.AppCompatActivity
@@ -15,13 +14,11 @@ import android.widget.TextView
 import android.widget.Toast
 
 import com.webhopers.innovexia.R
-import com.webhopers.innovexia.activities.SplashActivity
+import com.webhopers.innovexia.activities.ManageSlidesActivity
 import com.webhopers.innovexia.adapters.SelectableAdapter
 import com.webhopers.innovexia.dialogs.ListSlidesDialog
 import com.webhopers.innovexia.models.ProductCategory
 import com.webhopers.innovexia.services.RealmDatabaseService
-import com.webhopers.innovexia.services.SharedPreferenceService
-import com.webhopers.innovexia.utils.Constants
 import com.webhopers.innovexia.utils.RecyclerViewDecorator
 import kotlinx.android.synthetic.main.activity_presentation.*
 import kotlinx.android.synthetic.main.nav_list_item.view.*
@@ -66,6 +63,7 @@ class PresentationActivity : PresentationView, AppCompatActivity() {
         if (drawerToggle.onOptionsItemSelected(item)) return true
         when(item.itemId) {
             R.id.action_open_slides -> OpenListSlidesDialog()
+            R.id.action_manage_slides -> startManageSlidesActivity()
         }
         return super.onOptionsItemSelected(item)
     }
@@ -81,6 +79,10 @@ class PresentationActivity : PresentationView, AppCompatActivity() {
             return
         }
         ListSlidesDialog(this, displayValues.toTypedArray(), true, listOf())
+    }
+
+    private fun startManageSlidesActivity() {
+        startActivity(Intent(this, ManageSlidesActivity::class.java))
     }
 
     /**

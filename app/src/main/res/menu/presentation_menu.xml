@@ -6,4 +6,8 @@
         android:id="@+id/action_open_slides"
         app:showAsAction="never" />
 
+    <item android:title="@string/manage_slides"
+        android:id="@+id/action_manage_slides"
+        app:showAsAction="never" />
+
 </menu>
