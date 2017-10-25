@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.GridLayoutManager
+import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -17,7 +18,6 @@ import com.webhopers.innovexia.R
 import com.webhopers.innovexia.activities.ManageSlidesActivity
 import com.webhopers.innovexia.adapters.SelectableAdapter
 import com.webhopers.innovexia.dialogs.ListSlidesDialog
-import com.webhopers.innovexia.models.ProductCategory
 import com.webhopers.innovexia.services.RealmDatabaseService
 import com.webhopers.innovexia.utils.RecyclerViewDecorator
 import kotlinx.android.synthetic.main.activity_presentation.*
@@ -25,8 +25,6 @@ import kotlinx.android.synthetic.main.nav_list_item.view.*
 
 
 class PresentationActivity : PresentationView, AppCompatActivity() {
-
-    private val CATEGORIES = "CATEGORIES"
 
     private lateinit var map: Map<String, String>
 
@@ -41,14 +39,10 @@ class PresentationActivity : PresentationView, AppCompatActivity() {
         //presenter
         presenter = PresentationPresenter(this)
 
-        //extracting categories from intent
-        @Suppress("UNCHECKED_CAST")
-        val categories = intent.getSerializableExtra(CATEGORIES) as? List<ProductCategory>
-
-        //converting category list to a map
-        if (categories != null) {
-            map = categories.associateBy(keySelector = {it.name!!}, valueTransform = {it.id!!})
-        }
+        //product categories
+        map = RealmDatabaseService.getCategories()
+                .filter { it.publish!! }
+                .associateBy( keySelector = {it.name!!}, valueTransform = {it.id!!} )
 
         //initializing ui
         initUI()
@@ -125,6 +119,7 @@ class PresentationActivity : PresentationView, AppCompatActivity() {
             ap_recycler_view.adapter = null
             presenter.getProducts(selectedCategory)
         }
+        ap_drawer.openDrawer(Gravity.START)
     }
 
     private fun setUpRecyclerView() {

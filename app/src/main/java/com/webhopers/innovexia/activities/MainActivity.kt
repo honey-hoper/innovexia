@@ -115,10 +115,7 @@ class MainActivity : Syncher.SyncherInterface, AppCompatActivity() {
     }
 
     fun startPresentationActivity() {
-        val filteredList = RealmDatabaseService.getCategories().filter { it.publish!! }
-        val intent = Intent(this, PresentationActivity::class.java)
-        intent.putExtra(CATEGORIES, (filteredList as Serializable))
-        startActivity(intent)
+        startActivity(Intent(this, PresentationActivity::class.java))
     }
 
     fun startCreateVisitActivity() {
