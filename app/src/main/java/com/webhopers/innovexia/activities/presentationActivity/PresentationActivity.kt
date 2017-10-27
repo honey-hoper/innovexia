@@ -24,6 +24,7 @@ import kotlinx.android.synthetic.main.activity_presentation.*
 import kotlinx.android.synthetic.main.nav_list_item.view.*
 
 
+
 class PresentationActivity : PresentationView, AppCompatActivity() {
 
     private lateinit var map: Map<String, String>
@@ -42,10 +43,35 @@ class PresentationActivity : PresentationView, AppCompatActivity() {
         //product categories
         map = RealmDatabaseService.getCategories()
                 .filter { it.publish!! }
-                .associateBy( keySelector = {it.name!!}, valueTransform = {it.id!!} )
+                .associateBy( keySelector = {specialCharacterParser(it.name!!)}, valueTransform = {it.id!!} )
 
         //initializing ui
         initUI()
+    }
+
+    /**
+     *
+     * replaces html special characters from string
+     * used to replace special characters from categories
+     * and then categories are put in map
+     */
+    fun specialCharacterParser(str: String): String {
+        var newStr = str
+        val specialCharacter = listOf(
+                "&amp;" to "&",
+                "&lt;" to "<",
+                "&gt;" to ">",
+                "&quot;" to "\"",
+                "&apos;" to "'"
+        )
+
+        specialCharacter.forEach {
+            if (str.contains(it.first))
+                newStr = str.replace(it.first, it.second)
+
+        }
+
+        return newStr
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -112,12 +138,12 @@ class PresentationActivity : PresentationView, AppCompatActivity() {
     }
 
     private fun setUpNavDrawer() {
-        ap_nav_list.adapter = ArrayAdapter(this, R.layout.nav_list_item, R.id.nli_category_name, map.map { it.key })
+        ap_nav_list.adapter = ArrayAdapter(this, R.layout.nav_list_item, R.id.nli_category_name, map.map { it.key  })
         ap_nav_list.setOnItemClickListener { adapterView, view, i, l ->
             val selectedCategory = map[view.nli_category_name.text.toString()]!!
-            ap_drawer.closeDrawers()
             ap_recycler_view.adapter = null
             presenter.getProducts(selectedCategory)
+            ap_drawer.closeDrawers()
         }
         ap_drawer.openDrawer(Gravity.START)
     }
