@@ -1,19 +1,24 @@
 package com.webhopers.innovexia.activities
 
+import android.Manifest
 import android.app.Activity
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Typeface
 import android.location.Location
 import android.location.LocationManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
 import android.view.*
 import android.widget.DatePicker
 import android.widget.TextView
 import android.widget.TimePicker
+import android.widget.Toast
 import com.schibstedspain.leku.LocationPickerActivity
 import com.tokenautocomplete.TokenCompleteTextView
 
@@ -79,6 +84,23 @@ class CreateVisitActivity : DatePickerDialog.OnDateSetListener, TimePickerDialog
         dialog.show()
     }
 
+    fun checkLocationPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 0)
+            return
+        }
+
+        selectLocation()
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        if (requestCode == 0 && grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            selectLocation()
+        } else {
+            Toast.makeText(this, "Permission Denied!", Toast.LENGTH_SHORT).show()
+        }
+    }
+
     fun selectLocation() {
         val location = getLastKnownLocation()
         val lat = location?.latitude ?: 30.6532354
@@ -131,7 +153,7 @@ class CreateVisitActivity : DatePickerDialog.OnDateSetListener, TimePickerDialog
 
         acv_edit_date.setOnClickListener { selectDate() }
         acv_edit_time.setOnClickListener { selectTime() }
-        acv_edit_location.setOnClickListener { selectLocation() }
+        acv_edit_location.setOnClickListener { checkLocationPermission() }
     }
 
     private fun setUpToolbar() {
