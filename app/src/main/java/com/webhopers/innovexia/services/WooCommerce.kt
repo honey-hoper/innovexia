@@ -27,5 +27,9 @@ interface WooCommerce {
     @POST("customers/{id}")
     fun updateCustomer(@Path("id") id: String, @Body customer: Customer): Call<Customer>
 
+    @GET("buyer/list")
+    fun getBuyerList(): Call<List<Buyer>>
+
+
 }
 

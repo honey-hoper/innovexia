@@ -2,8 +2,10 @@ package com.webhopers.innovexia.models
 
 
 class Buyer(
-        var id: Long? = null,
+        var id: Int? = null,
         var name: String? = null,
-        var type: String? = null,
-        var address: String? = null
+        var address: String? = null,
+        var type: Int? = null,
+        var active: Int? = null
+
 )

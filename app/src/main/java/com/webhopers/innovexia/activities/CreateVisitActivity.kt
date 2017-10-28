@@ -175,7 +175,7 @@ class CreateVisitActivity : DatePickerDialog.OnDateSetListener, TimePickerDialog
     }
 
     private fun setUpBuyerField() {
-        acv_buyer_field.setAdapter(BuyerAutoCompleteAdapter(FakeData.getBuyers()))
+        acv_buyer_field.setAdapter(BuyerAutoCompleteAdapter(RealmDatabaseService.getBuyers()))
     }
 
     private fun setUpProductField() {

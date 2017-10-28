@@ -39,3 +39,12 @@ open class ProductCategoryRealm(
         var name: String? = null,
         var publish: Boolean? = null
 ) : RealmObject()
+
+open class BuyerRealm(
+        @PrimaryKey
+        var id: Int? = null,
+        var name: String? = null,
+        var address: String? = null,
+        var type: Int? = null,
+        var active: Int? = null
+) : RealmObject()

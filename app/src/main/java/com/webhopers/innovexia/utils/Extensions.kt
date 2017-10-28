@@ -71,4 +71,24 @@ fun ProductCategoryRealm.convertToProductCategory() : ProductCategory {
     )
 }
 
+fun Buyer.convertToBuyerRealm() : BuyerRealm {
+    return BuyerRealm(
+            this.id,
+            this.name,
+            this.address,
+            this.type,
+            this.active
+    )
+}
+
+fun BuyerRealm.convertToBuyer() : Buyer {
+    return Buyer(
+            this.id,
+            this.name,
+            this.address,
+            this.type,
+            this.active
+    )
+}
+
 

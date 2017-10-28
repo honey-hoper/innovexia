@@ -1,5 +1,6 @@
 package com.webhopers.innovexia.services
 
+import com.webhopers.innovexia.models.Buyer
 import com.webhopers.innovexia.models.Product
 import com.webhopers.innovexia.models.ProductCategory
 import retrofit2.Call
@@ -11,11 +12,30 @@ class Syncher {
     companion object {
 
         val woocomm by lazy { WooCommerceClient.get().create(WooCommerce::class.java) }
+        val woocommSimple by lazy { WooCommerceClient.getSimple().create(WooCommerce::class.java)}
 
         fun initiate(syncherInterface: SyncherInterface) {
             syncherInterface.preSync()
+            syncBuyers()
             syncProducts()
             syncCategories(syncherInterface)
+        }
+
+        //syncs buyers
+        private fun syncBuyers() {
+            val buyers = mutableListOf<Buyer>()
+            woocommSimple.getBuyerList()
+                    .enqueue(object : Callback<List<Buyer>> {
+                        override fun onResponse(call: Call<List<Buyer>>, response: Response<List<Buyer>>) {
+                            if (response.isSuccessful) {
+                                RealmDatabaseService.saveBuyers(response.body()!!)
+                            }
+                        }
+
+                        override fun onFailure(call: Call<List<Buyer>>, t: Throwable) {}
+
+                    })
+
         }
 
         //syncs products and saves to database

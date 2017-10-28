@@ -62,12 +62,12 @@ class BuyerAutoCompleteAdapter(val originalList: List<Buyer>) : Filterable, Base
             }
 
             v.bv_buyer_name.text = tempList[position].name
-            v.bv_buyer_type.text = "(${tempList[position].type})"
+            v.bv_buyer_type.text = "(${if (tempList[position].type == 1) "Doctor" else "Chemist"})"
             v.bv_buyer_address.text = tempList[position].address
             return v
         }
         v.bv_buyer_name.text = tempList[position].name
-        v.bv_buyer_type.text = "(${tempList[position].type})"
+        v.bv_buyer_type.text = "(${if (tempList[position].type == 1) "Doctor" else "Chemist"})"
         v.bv_buyer_address.text = tempList[position].address
         return v
     }

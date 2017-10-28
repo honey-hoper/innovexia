@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="#fff"
     xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
@@ -30,6 +31,8 @@
         android:layout_below="@id/bv_buyer_name"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="8dp"
+        android:maxLines="1"
+        android:ellipsize="end"
         android:theme="@style/SmallText"
         tools:text="Royal Enclave, Patiala"/>
 
