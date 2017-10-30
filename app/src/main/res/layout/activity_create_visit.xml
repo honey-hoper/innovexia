@@ -177,6 +177,7 @@
     </ScrollView>
 
     <Button
+        android:id="@+id/acv_submit_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
@@ -184,4 +185,11 @@
         android:textColor="#fff"
         android:textAppearance="@style/NormalText.Bold"
         android:text="@string/submit"/>
+
+    <ProgressBar
+        android:id="@+id/acv_pbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"/>
 </android.support.design.widget.CoordinatorLayout>

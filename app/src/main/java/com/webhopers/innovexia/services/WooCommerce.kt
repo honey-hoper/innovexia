@@ -30,6 +30,9 @@ interface WooCommerce {
     @GET("buyer/list")
     fun getBuyerList(): Call<List<Buyer>>
 
+    @POST("visit/add")
+    fun addVisit(@Body visit: Visit): Call<Any>
+
 
 }
 
