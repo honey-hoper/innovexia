@@ -3,6 +3,7 @@ package com.webhopers.innovexia.services
 import com.webhopers.innovexia.models.*
 import retrofit2.Call
 import retrofit2.http.*
+import java.util.function.LongToDoubleFunction
 
 interface WooCommerce {
 
@@ -32,6 +33,9 @@ interface WooCommerce {
 
     @POST("visit/add")
     fun addVisit(@Body visit: Visit): Call<Any>
+
+    @GET("visit/list")
+    fun getCustomerVisits(@Query("id") id: Long): Call<List<Visit>>
 
 
 }

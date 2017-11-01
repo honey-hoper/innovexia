@@ -44,6 +44,7 @@ class MainActivity : Syncher.SyncherInterface, AppCompatActivity() {
         am_sync_btn.setOnClickListener { Syncher.initiate(this) }
         am_profile_btn.setOnClickListener { startProfileActivity() }
         am_slide_btn.setOnClickListener { OpenListSlidesDialog() }
+        am_my_visits_btn.setOnClickListener { startMyVisitsActivity() }
     }
 
 
@@ -124,6 +125,10 @@ class MainActivity : Syncher.SyncherInterface, AppCompatActivity() {
 
     fun startProfileActivity() {
         startActivity(Intent(this, ProfileActivity::class.java))
+    }
+
+    fun startMyVisitsActivity() {
+        startActivity(Intent(this, MyVisitsActivtiy::class.java))
     }
 
     fun startSplashActivity() {

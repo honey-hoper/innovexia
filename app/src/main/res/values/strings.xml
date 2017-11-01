@@ -48,6 +48,7 @@
     <string name="last_name">last name</string>
     <string name="phone">phone</string>
     <string name="update">Update</string>
+    <string name="my_visits">My Visits</string>
     <!-- Activities -->
 
 </resources>

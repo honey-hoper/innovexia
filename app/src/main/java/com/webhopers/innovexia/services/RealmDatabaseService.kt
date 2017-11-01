@@ -87,6 +87,13 @@ class RealmDatabaseService {
             return list.map { it.convertToProduct() }
         }
 
+        fun getProduct(id: String): Product? {
+            val realm = Realm.getDefaultInstance()
+            return  realm.where(ProductRealm::class.java)
+                    .equalTo("id", id)
+                    .findFirst()?.convertToProduct()
+        }
+
         fun saveCategories(categories: List<ProductCategory>) {
             val realmList = RealmList<ProductCategoryRealm>()
 

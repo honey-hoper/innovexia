@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:focusable="true"
+    android:clickable="true"
+    android:background="?android:attr/selectableItemBackground"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/viv_date_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:theme="@style/NormalText.Bold"
+        tools:text="12/07/2009"/>
+
+    <TextView
+        android:id="@+id/viv_buyer_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_alignParentEnd="true"
+        android:theme="@style/NormalText.Bold"
+        tools:text="Monga Lal Ji"/>
+
+    <TextView
+        android:id="@+id/viv_address_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
+        android:layout_below="@id/viv_date_view"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:theme="@style/NormalText.Bold"
+        tools:text="#Z-4, Royal Enclave behind U.E Phase-1, Patiala, Punjabb, India"/>
+
+</RelativeLayout>
