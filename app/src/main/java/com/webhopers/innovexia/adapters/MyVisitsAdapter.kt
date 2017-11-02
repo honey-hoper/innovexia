@@ -11,7 +11,10 @@ import com.webhopers.innovexia.R
 import com.webhopers.innovexia.activities.VisitActivity
 import com.webhopers.innovexia.models.Visit
 import com.webhopers.innovexia.services.RealmDatabaseService
+import com.webhopers.innovexia.utils.getDate
+import com.webhopers.innovexia.utils.getTime
 import kotlinx.android.synthetic.main.visit_item_view.view.*
+import java.util.*
 
 class MyVisitsAdapter(val dataset: List<Visit>) : RecyclerView.Adapter<MyVisitsAdapter.ViewHolder>() {
 
@@ -35,7 +38,11 @@ class MyVisitsAdapter(val dataset: List<Visit>) : RecyclerView.Adapter<MyVisitsA
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(visit: Visit, buyerName: String) {
-            itemView.viv_date_view.text = visit.dateTime
+
+            val date = visit.dateTime?.getDate()
+            val time = visit.dateTime?.getTime()
+
+            itemView.viv_date_view.text = "$date\n$time"
             itemView.viv_buyer_view.text = buyerName
             itemView.viv_address_view.text = visit.location
 

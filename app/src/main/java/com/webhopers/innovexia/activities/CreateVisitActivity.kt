@@ -302,7 +302,13 @@ class CreateVisitActivity : DatePickerDialog.OnDateSetListener, TimePickerDialog
     }
 
     private fun setTime() {
-        acv_time_view.text = "$hour:$min"
+        val calendar = Calendar.getInstance()
+        calendar.set(Calendar.HOUR, hour)
+        calendar.set(Calendar.MINUTE, min)
+
+        val timeFormatter = SimpleDateFormat("hh:mm a")
+
+        acv_time_view.text = timeFormatter.format(calendar.time)
     }
 
     private fun setDate() {

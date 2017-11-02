@@ -8,24 +8,26 @@
     android:background="?android:attr/selectableItemBackground"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/viv_date_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        android:theme="@style/NormalText.Bold"
-        tools:text="12/07/2009"/>
 
     <TextView
         android:id="@+id/viv_buyer_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:theme="@style/NormalText.Bold"
+        tools:text="Monga Lal Ji"/>
+
+    <TextView
+        android:id="@+id/viv_date_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_alignParentEnd="true"
         android:theme="@style/NormalText.Bold"
-        tools:text="Monga Lal Ji"/>
+        tools:text="12/07/2009"/>
+
 
     <TextView
         android:id="@+id/viv_address_view"
@@ -39,6 +41,6 @@
         android:maxLines="1"
         android:ellipsize="end"
         android:theme="@style/NormalText.Bold"
-        tools:text="#Z-4, Royal Enclave behind U.E Phase-1, Patiala, Punjabb, India"/>
+        tools:text="#Z-4, Royal Enclave behind U.E Phase-1, Patiala, Punjab, India"/>
 
 </RelativeLayout>

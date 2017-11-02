@@ -3,6 +3,8 @@ package com.webhopers.innovexia.utils
 import android.support.design.widget.TextInputEditText
 import android.view.View
 import com.webhopers.innovexia.models.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 fun View.show(bool: Boolean) {
     if (bool) this.visibility = View.VISIBLE
@@ -91,4 +93,18 @@ fun BuyerRealm.convertToBuyer() : Buyer {
     )
 }
 
+fun String.getDate(): String {
+    val dateTokens = this.split(" ")[0].split("-")
+    return "${dateTokens[2]}/${dateTokens[1]}/${dateTokens[0]}"
+}
+
+fun String.getTime(): String {
+    val timeTokens = this.split(" ")[1].split(":")
+    val calendar = Calendar.getInstance()
+    calendar.set(Calendar.HOUR, timeTokens[0].toInt())
+    calendar.set(Calendar.MINUTE, timeTokens[1].toInt())
+
+    val timeFormatter = SimpleDateFormat("hh:mm a")
+    return timeFormatter.format(calendar.time)
+}
 
