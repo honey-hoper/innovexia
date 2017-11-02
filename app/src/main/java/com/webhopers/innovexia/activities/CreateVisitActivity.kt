@@ -205,6 +205,7 @@ class CreateVisitActivity : DatePickerDialog.OnDateSetListener, TimePickerDialog
                         disableSubmitButton(false)
                         if (response.isSuccessful) {
                             Toast.makeText(this@CreateVisitActivity, "Successful", Toast.LENGTH_SHORT).show()
+                            finish()
                         } else {
                             Toast.makeText(this@CreateVisitActivity, "Failed ${response.code()}", Toast.LENGTH_SHORT).show()
                         }
