@@ -308,8 +308,13 @@ class CreateVisitActivity : DatePickerDialog.OnDateSetListener, TimePickerDialog
         calendar.set(Calendar.MINUTE, min)
 
         val timeFormatter = SimpleDateFormat("hh:mm a")
+        val date = timeFormatter.format(calendar.time)
 
-        acv_time_view.text = timeFormatter.format(calendar.time)
+//        if (date[6] == 'A') date.replace("AM", "PM")
+//        else date.replace("PM", "AM")
+
+        acv_time_view.text = date
+
     }
 
     private fun setDate() {
