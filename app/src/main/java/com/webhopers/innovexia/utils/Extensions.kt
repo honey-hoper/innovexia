@@ -8,7 +8,7 @@ import java.util.*
 
 fun View.show(bool: Boolean) {
     if (bool) this.visibility = View.VISIBLE
-    else this.visibility = View.GONE
+    else this.visibility = View.INVISIBLE
 }
 
 fun TextInputEditText.value() = this.text.toString().trim()
